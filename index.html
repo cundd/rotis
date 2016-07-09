@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Basic Property Grid</title>
+    <style>
+    *, *:after, *:before {
+        box-sizing: border-box;
+    }
+    body {
+        font-family: sans-serif;
+        background: #333;
+        color: white;
+    }
+    .column {
+        float: left;
+    }
+
+    .cell {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        cursor: pointer;
+    }
+    .cell-color-red {
+        background: red;
+    }
+    .cell-color-blue{
+        background: blue;
+    }
+    .cell-color-green{
+        background: green;
+    }
+    .cell-color-yellow {
+        background: yellow;
+    }
+
+    </style>
+    <!-- include react -->
+    <script src="./node_modules/react/dist/react-with-addons.js"></script>
+</head>
+<body>
+    <div id="content">
+        <!-- this is where the root react component will get rendered -->
+    </div>
+    <!-- include the webpack-dev-server script so our scripts get reloaded when we make a change -->
+    <!-- we'll run the webpack dev server on port 8090, so make sure it is correct -->
+    <script src="http://localhost:8080/webpack-dev-server.js"></script>
+    <!-- include the bundle that contains all our scripts, produced by webpack -->
+    <!-- the bundle is served by the webpack-dev-server, so serve it also from localhost:8090 -->
+    <script type="text/javascript" src="http://localhost:8080/dist/bundle.js"></script>
+</body>
+</html>
