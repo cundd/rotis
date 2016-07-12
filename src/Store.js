@@ -3,8 +3,6 @@ import Grid from './Grid';
 
 export default class Store {
     constructor(renderCallback, clickHandler) {
-        //this._state = this.getInitialState();
-
         clickHandler.store = this;
 
         this.rootComponent = renderCallback(this);
@@ -14,7 +12,7 @@ export default class Store {
 
     getInitialState() {
         const rowCount = 10;
-        const columnCount = 8;
+        const columnCount = 20;
         const grid = new Grid(this.buildRandomColumns(rowCount, columnCount));
 
         return {
