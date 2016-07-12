@@ -1,25 +1,29 @@
 import Color from './Color';
+import Grid from './Grid';
 
 export default class Store {
     constructor(renderCallback, clickHandler) {
-        this._state = this.getInitialState();
+        //this._state = this.getInitialState();
 
         clickHandler.store = this;
 
         this.rootComponent = renderCallback(this);
+        this.setState(this.getInitialState());
 
     }
 
     getInitialState() {
         const rowCount = 10;
         const columnCount = 8;
+        const grid = new Grid(this.buildRandomColumns(rowCount, columnCount));
 
         return {
             'size': {
                 rows: rowCount,
                 columns: columnCount
             },
-            'columns': this.buildRandomColumns(rowCount, columnCount)
+            'grid': grid,
+            'columns': grid.getData()
         };
     }
 
@@ -28,7 +32,9 @@ export default class Store {
     }
 
     setState(state) {
-        this.rootComponent.forceUpdate();
+        this._state = state;
+        //this.rootComponent.forceUpdate();
+        this.rootComponent.setState(state);
         //this.store.setState(state);
     }
 
@@ -46,10 +52,7 @@ export default class Store {
             for (j = 0; j < rowCount; j++) {
                 row.push(this.getRandomColor());
             }
-            columns.push({
-                index: i,
-                colors: row
-            });
+            columns.push(row);
         }
 
         return columns;

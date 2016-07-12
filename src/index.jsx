@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Store from './Store';
-import GameWindow from './GameWindow';
+import GameWindow from './View/GameWindow';
 import ClickHandler from './ClickHandler';
 
 
