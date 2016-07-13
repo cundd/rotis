@@ -27,12 +27,22 @@ body {
     -moz-box-shadow: inset 1px 2px 5px rgba(0, 0, 0, 0.5);
     box-shadow: inset 1px 2px 5px rgba(0, 0, 0, 0.5); }
   .cell.cell-color-red {
-    background: #b70000; }
+    background: #b70029; }
   .cell.cell-color-blue {
-    background: #150080; }
+    background: #0c1b80; }
   .cell.cell-color-green {
-    background: #0aa219; }
+    background: #29a227; }
   .cell.cell-color-yellow {
     background: #ffdc10; }
+  .cell.cell-color-brown {
+    background: #a5452f; }
+  .cell.cell-color-pink {
+    background: #ff9baa; }
+  .cell.cell-color-mint {
+    background: lightseagreen; }
+  .cell.cell-color-violet {
+    background: #640ca4; }
+  .cell.cell-color-orange {
+    background: orange; }
 
 /*# sourceMappingURL=main.css.map */

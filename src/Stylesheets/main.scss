@@ -34,18 +34,30 @@ body {
     }
 
     &.cell-color-red {
-        background: #b70000;
+        background: #b70029;
     }
-
     &.cell-color-blue {
-        background: #150080;
+        background: #0c1b80;
     }
-
     &.cell-color-green {
-        background: #0aa219;
+        background: #29a227;
     }
-
     &.cell-color-yellow {
         background: #ffdc10;
+    }
+    &.cell-color-brown {
+        background: #a5452f;
+    }
+    &.cell-color-pink {
+        background: #ff9baa;
+    }
+    &.cell-color-mint {
+        background: lightseagreen;
+    }
+    &.cell-color-violet {
+        background: #640ca4;
+    }
+    &.cell-color-orange {
+        background: orange;
     }
 }
