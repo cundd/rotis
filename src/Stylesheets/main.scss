@@ -1,11 +1,33 @@
+$gray-medium: #555555;
+$gray-dark: #333;
+$gray-darker: #2b2b2b;
+
 *, *:after, *:before {
     box-sizing: border-box;
 }
 
+
 body {
-    font-family: sans-serif;
-    background: #333;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background: $gray-dark;
     color: white;
+}
+
+@mixin clear() {
+    & {
+        display: block;
+        clear: both;
+    }
+
+    &:before, &:after {
+        clear: both;
+        display: block;
+        content: " ";
+    }
+}
+
+.grid {
+    @include clear();
 }
 
 .column {
@@ -60,4 +82,11 @@ body {
     &.cell-color-orange {
         background: orange;
     }
+}
+
+.toolbar {
+    font-size: 20px;
+    line-height: 26px;
+    color: $gray-darker;
+    //text-shadow: 1px 2px 3px $gray-dark, 0 0 0 #000, 1px 2px 3px $gray-dark;
 }

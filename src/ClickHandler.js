@@ -4,7 +4,6 @@ class ClickHandler {
     constructor() {
         this.store = null;
         this._columns = [];
-        this._cellsToRemove = [];
     }
 
     handleClick(color, x, y) {
@@ -12,16 +11,19 @@ class ClickHandler {
         const connectedCells = grid.findConnectedCells(new Cell(color, x, y));
         const newGrid = grid.removeCells(connectedCells);
 
-        console.log(connectedCells);
-
-        this._updateState(newGrid);
+        this._updateState(newGrid, connectedCells);
     }
 
-    _updateState(grid) {
+    _updateState(grid, connectedCells) {
         let stateBefore = this.store.getState();
+        const previousScore = stateBefore.score;
+
+
+
         const newState = Object.assign({}, stateBefore, {
             grid: grid,
-            columns: grid.getData()
+            columns: grid.getData(),
+            score: previousScore + Math.pow(2, connectedCells.length)
         });
 
         this.store.setState(newState);

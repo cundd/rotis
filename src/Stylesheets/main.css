@@ -2,9 +2,18 @@
   box-sizing: border-box; }
 
 body {
-  font-family: sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   background: #333;
   color: white; }
+
+.grid {
+  display: block;
+  clear: both; }
+
+.grid:before, .grid:after {
+  clear: both;
+  display: block;
+  content: " "; }
 
 .column {
   float: left; }
@@ -44,5 +53,10 @@ body {
     background: #640ca4; }
   .cell.cell-color-orange {
     background: orange; }
+
+.toolbar {
+  font-size: 20px;
+  line-height: 26px;
+  color: #2b2b2b; }
 
 /*# sourceMappingURL=main.css.map */

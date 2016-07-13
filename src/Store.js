@@ -21,7 +21,8 @@ export default class Store {
                 columns: columnCount
             },
             'grid': grid,
-            'columns': grid.getData()
+            'columns': grid.getData(),
+            'score': 0
         };
     }
 
