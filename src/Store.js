@@ -7,12 +7,20 @@ export default class Store {
 
         this.rootComponent = renderCallback(this);
         this.setState(this.getInitialState());
+    }
 
+    loadRowAndCountFromUri() {
+        const hash = window.location.hash;
+        if (hash) {
+            return hash.substr(1).split('x');
+        }
+        return [10, 20];
     }
 
     getInitialState() {
-        const rowCount = 10;
-        const columnCount = 20;
+        const rowCol = this.loadRowAndCountFromUri();
+        const rowCount = rowCol[0];
+        const columnCount = rowCol[1];
         const grid = new Grid(this.buildRandomColumns(rowCount, columnCount));
 
         return {

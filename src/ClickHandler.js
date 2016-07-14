@@ -18,8 +18,6 @@ class ClickHandler {
         let stateBefore = this.store.getState();
         const previousScore = stateBefore.score;
 
-
-
         const newState = Object.assign({}, stateBefore, {
             grid: grid,
             columns: grid.getData(),

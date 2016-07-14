@@ -14,4 +14,4 @@ const render = function (store) {
     return ReactDOM.render(<GameWindow store={store.getState()} clickHandler={clickHandler} />, document.getElementById('content'));
 }
 
-const store = new Store(render, clickHandler);
+new Store(render, clickHandler);

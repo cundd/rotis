@@ -6,15 +6,6 @@ export default class Grid {
         this._columns = columns;
     }
 
-    // cell(row, col) {
-    //     const color = this._getCellColor(row, col);
-    //     if (color) {
-    //         return new Cell(color, row, col);
-    //     }
-    //
-    //     return undefined;
-    // }
-
     removeCells(cellsToRemove) {
         if (cellsToRemove.length === 0) {
             return new Grid(this._columns.slice());
@@ -47,9 +38,33 @@ export default class Grid {
             throw "JSON of columns are identical";
         }
 
-        return new Grid(newColumns.filter(function(column) {
+        return new Grid(newColumns.filter(function (column) {
             return column.length > 0;
         }));
+    }
+
+    hasConnectedCells() {
+        let columns = this._columns;
+        return 0 < columns.filter(
+                function (cells, column) {
+                    const cellsLength = cells.length;
+
+                    for (let i = 0; i < cellsLength; i += 1) {
+                        const color = cells[i];
+                        const nextColor = cells[i + 1];
+                        if (color === nextColor) {
+                            return true;
+                        }
+                        
+                        const nextColumn = columns[column + 1];
+                        if (nextColumn && color === nextColumn[i]) {
+                            return true;
+                        }
+                    }
+
+                    return false;
+                }
+            ).length;
     }
 
     /**

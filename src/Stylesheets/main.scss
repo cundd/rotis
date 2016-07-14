@@ -1,11 +1,12 @@
+$gray: #999;
 $gray-medium: #555555;
 $gray-dark: #333;
-$gray-darker: #2b2b2b;
+$gray-darker: #232323;
+$std-space: 20px;
 
 *, *:after, *:before {
     box-sizing: border-box;
 }
-
 
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -85,8 +86,33 @@ body {
 }
 
 .toolbar {
-    font-size: 20px;
-    line-height: 26px;
+    font-size: 16px;
+    line-height: 30px;
     color: $gray-darker;
     //text-shadow: 1px 2px 3px $gray-dark, 0 0 0 #000, 1px 2px 3px $gray-dark;
+}
+
+.modal-overlay {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
+
+    background: rgba(black, .5);
+
+    .modal {
+        margin: $std-space auto;
+        width: 300px;
+        max-width: 80%;
+        background: $gray-dark;
+        padding: $std-space;
+        color: $gray;
+
+        cursor: pointer;
+
+        -webkit-box-shadow: 1px 2px 5px rgba(#000, 0.5);
+        -moz-box-shadow: 1px 2px 5px rgba(#000, 0.5);
+        box-shadow: 1px 2px 5px rgba(#000, 0.5);
+    }
 }
