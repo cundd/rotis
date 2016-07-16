@@ -4,53 +4,51 @@ import Modal from './Modal';
 import Score from './Score';
 import Reload from './Reload';
 
-let GameWindow = React.createClass({
-    getInitialState: function () {
-        return {
+export default class extends React.Component {
+    constructor() {
+        super();
+        this.state = {
             columns: [],
             grid: null,
             score: 0
         };
-    },
+    }
 
-    onCellClick: function (event, cell) {
+    onCellClick(event, cell) {
         const cellProps = cell.props;
-
         this.props.clickHandler.handleClick(cellProps.color, cellProps.x, cellProps.y, this);
-    },
+    }
 
-    onModalClick: function () {
+    onModalClick() {
         this.restart();
-    },
+    }
 
-    onReloadClick: function () {
+    onReloadClick() {
         this.restart();
-    },
+    }
 
-    restart: function() {
-        // this.setState(this.getInitialState());
-        // window.location.reload();
+    restart() {
         this.props.store.reset();
-    },
+    }
 
-    render: function () {
+    render() {
         const grid = this.state.grid;
-        const _onCellClick = this.onCellClick;
+        const _onReloadClick = this.onReloadClick.bind(this);
+        const _onCellClick = this.onCellClick.bind(this);
+        const _onModalClick = this.onModalClick.bind(this);
         const createColumn = function (column, index) {
             return <Column key={index} data={column} columnIndex={index} onCellClick={_onCellClick}/>;
         };
 
         let modal;
         if (grid && !grid.hasConnectedCells()) {
-            modal = <Modal message="Game over" onClick={this.onModalClick}/>
+            modal = <Modal message="Game over" onClick={_onModalClick}/>
         }
 
         return <div className="game-window">
-            <div className="toolbar"><Score score={this.state.score} /><Reload onClick={this.onReloadClick} /></div>
+            <div className="toolbar"><Score score={this.state.score}/><Reload onClick={_onReloadClick}/></div>
             <div className="grid">{this.state.columns.map(createColumn)}</div>
             {modal}
         </div>;
     }
-});
-
-export default GameWindow;
+}
