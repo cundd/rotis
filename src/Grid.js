@@ -55,7 +55,7 @@ export default class Grid {
                         if (color === nextColor) {
                             return true;
                         }
-                        
+
                         const nextColumn = columns[column + 1];
                         if (nextColumn && color === nextColumn[i]) {
                             return true;
@@ -69,7 +69,7 @@ export default class Grid {
 
     /**
      *
-     * @param Cell cell
+     * @param {Cell} cell
      * @returns {*}
      */
     findConnectedCells(cell:Cell) {

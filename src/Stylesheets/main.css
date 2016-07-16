@@ -57,16 +57,16 @@ body {
 .toolbar {
   font-size: 16px;
   line-height: 30px;
-  color: #232323; }
+  color: #999; }
   .toolbar .toolbar-item {
     display: block;
     float: left;
     padding: 0 10px; }
   .toolbar a {
     text-decoration: none;
-    color: #232323; }
+    color: #999; }
     .toolbar a:active {
-      color: #161616;
+      color: #555555;
       background: #232323; }
 
 .modal-overlay {
