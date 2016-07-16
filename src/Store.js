@@ -9,12 +9,22 @@ export default class Store {
         this.setState(this.getInitialState());
     }
 
+    applicationWindow() {
+        return window;
+    }
+
     loadRowAndCountFromUri() {
-        const hash = window.location.hash;
+        const cellSize = 40;
+        const applicationWindow = this.applicationWindow();
+        const hash = applicationWindow.location.hash;
         if (hash) {
             return hash.substr(1).split('x');
         }
-        return [10, 20];
+
+        return [
+            Math.floor(applicationWindow.innerHeight / cellSize) -1,
+            Math.floor(applicationWindow.innerWidth / cellSize) - 1
+        ];
     }
 
     getInitialState() {
