@@ -1,4 +1,5 @@
 var path = require('path');
+var webpack = require('webpack');
 var BUILD_DIR = path.resolve(__dirname, 'dist');
 var APP_DIR = path.resolve(__dirname, 'src');
 
@@ -24,10 +25,17 @@ module.exports = {
             }
         ]
     },
+    // plugins: [
+    //     new webpack.DefinePlugin({
+    //         'process.env':{
+    //             'NODE_ENV': JSON.stringify('production')
+    //         }
+    //     })
+    // ],
     externals: {
         //don't bundle the 'react' npm package with our bundle.js
         //but get it from a global 'React' variable
-        // 'react': 'React'
+        'react': 'React'
     },
     resolve: {
         extensions: ['', '.js', '.jsx']
