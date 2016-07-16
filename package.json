@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node_modules/.bin/webpack -d"
+    "build": "node_modules/.bin/webpack -d",
+    "start": "node_modules/.bin/webpack-dev-server --cache false --debug --hot"
   },
   "author": "",
   "license": "MIT",
