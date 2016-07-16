@@ -1,7 +1,12 @@
+var path = require('path');
+var BUILD_DIR = path.resolve(__dirname, 'dist');
+var APP_DIR = path.resolve(__dirname, 'src');
+
+
 module.exports = {
-    entry: './src/index.jsx',
+    entry: APP_DIR + '/index.jsx',
     output: {
-        path: './dist/',
+        path: BUILD_DIR,
         filename: 'bundle.js', //this is the default name, so you can skip it
         //at this directory our bundle file will be available
         //make sure port 8090 is used when launching webpack-dev-server
@@ -27,4 +32,4 @@ module.exports = {
     resolve: {
         extensions: ['', '.js', '.jsx']
     }
-}
+};
