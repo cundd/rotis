@@ -90,6 +90,23 @@ body {
     line-height: 30px;
     color: $gray-darker;
     //text-shadow: 1px 2px 3px $gray-dark, 0 0 0 #000, 1px 2px 3px $gray-dark;
+    //text-transform: uppercase;
+
+    .toolbar-item {
+        display: block;
+        float: left;
+        padding: 0 ($std-space/2);
+    }
+
+    a {
+        text-decoration: none;
+        color: $gray-darker;
+
+        &:active {
+            color: darken($gray-darker, 5%);
+            background: $gray-darker;
+        }
+    }
 }
 
 .modal-overlay {

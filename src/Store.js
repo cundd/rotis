@@ -50,9 +50,11 @@ export default class Store {
 
     setState(state) {
         this._state = state;
-        //this.rootComponent.forceUpdate();
         this.rootComponent.setState(state);
-        //this.store.setState(state);
+    }
+
+    reset() {
+        this.setState(this.getInitialState());
     }
 
     dispatch(action) {
@@ -73,24 +75,6 @@ export default class Store {
         }
 
         return columns;
-        // let rows = this.state.size.rows;
-        // let columns = this.state.size.columns;
-
-        // var prop, len = 0, randomPos, pos = 0;
-        //     for (prop in obj) {
-        //         if (obj.hasOwnProperty(prop)) {
-        //             len += 1;
-        //         }
-        //     }
-        //     randomPos = Math.floor(Math.random() * len);
-        //     for (prop in obj) {
-        //         if (obj.hasOwnProperty(prop)) {
-        //             if (pos === randomPos) {
-        //                 return prop;
-        //             }
-        //             pos += 1;
-        //         }
-        //     }
     }
 
     getRandomColor() {

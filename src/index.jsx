@@ -11,7 +11,7 @@ import ClickHandler from './ClickHandler';
 const clickHandler = new ClickHandler();
 
 const render = function (store) {
-    return ReactDOM.render(<GameWindow store={store.getState()} clickHandler={clickHandler} />, document.getElementById('content'));
-}
+    return ReactDOM.render(<GameWindow store={store} clickHandler={clickHandler} />, document.getElementById('content'));
+};
 
-new Store(render, clickHandler);
+let store = new Store(render, clickHandler);
