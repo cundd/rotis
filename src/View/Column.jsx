@@ -3,14 +3,43 @@ import Cell from './Cell';
 
 class Column extends React.Component {
     render() {
-        let columnIndex = this.props.columnIndex;
-        let onCellClick = this.props.onCellClick;
-        let createCell = function(color, index) {
-            return <Cell key={index} x={index} y={columnIndex} color={color} onCellClick={onCellClick}/>;
+        const reverse = this.props.reverse;
+        const size = this.props.size;
+        const columnIndex = this.props.columnIndex;
+        const onCellClick = this.props.onCellClick;
+
+        const createCell = function (cell, index) {
+            let row = index;
+
+            console.log(index);
+            if (reverse) {
+                row = size.rows - index - 1;
+            }
+
+            return <Cell key={index} x={cell.row} y={columnIndex} b={index} color={cell.color} onCellClick={onCellClick}/>;
         };
 
-        return <div className={"column column-"+this.props.data.index}>{this.props.data.map(createCell)}</div>;
+
+        let cells = this.props.data.map(function(color, index) {
+            return {
+                color: color,
+                row: index
+            }
+        });
+
+        if (reverse) {
+            cells = cells.reverse();
+        }
+
+        // const cellsBottomUp = cells.slice();
+        console.log("Cols %i len %i", size.rows, cells.length);
+
+        // const spacerSize = 0;
+        const spacerSize = size.rows - cells.length;
+        const classes = "column column-" + columnIndex + " top-" + spacerSize;
+
+        return <div className={classes}>{cells.map(createCell)}</div>;
     }
-};
+}
 
 export default Column;

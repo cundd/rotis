@@ -32,12 +32,14 @@ export default class extends React.Component {
     }
 
     render() {
-        const grid = this.state.grid;
+        const state = this.state;
+        const grid = state.grid;
+        const size = state.size;
         const _onReloadClick = this.onReloadClick.bind(this);
         const _onCellClick = this.onCellClick.bind(this);
         const _onModalClick = this.onModalClick.bind(this);
         const createColumn = function (column, index) {
-            return <Column key={index} data={column} columnIndex={index} onCellClick={_onCellClick}/>;
+            return <Column key={index} data={column} columnIndex={index} reverse="true" onCellClick={_onCellClick} size={size}/>;
         };
 
         let modal;
@@ -45,9 +47,10 @@ export default class extends React.Component {
             modal = <Modal message="Game over" onClick={_onModalClick}/>
         }
 
+
         return <div className="game-window">
-            <div className="toolbar"><Score score={this.state.score}/><Reload onClick={_onReloadClick}/></div>
-            <div className="grid">{this.state.columns.map(createColumn)}</div>
+            <div className="toolbar"><Score score={state.score}/><Reload onClick={_onReloadClick}/></div>
+            <div className="grid grid-reverse">{state.columns.map(createColumn)}</div>
             {modal}
         </div>;
     }
