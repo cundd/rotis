@@ -23,8 +23,9 @@ export default class Grid {
         const newColumns = this._columns.map(function (column, currentColumnIndex) {
             let rowsToRemoveInCurrentColumn = columnsToRowsMap[currentColumnIndex];
 
-            console.log('Row(s) to remove in current column', rowsToRemoveInCurrentColumn, currentColumnIndex)
             if (typeof rowsToRemoveInCurrentColumn !== 'undefined') {
+                console.log('Row(s) to remove in current column', rowsToRemoveInCurrentColumn, currentColumnIndex)
+                
                 // There are items to remove in the current column
                 return column.filter(function (cell, rowIndex) {
                     return rowsToRemoveInCurrentColumn.indexOf(rowIndex) === -1;

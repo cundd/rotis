@@ -9,14 +9,7 @@ class Column extends React.Component {
         const onCellClick = this.props.onCellClick;
 
         const createCell = function (cell, index) {
-            let row = index;
-
-            console.log(index);
-            if (reverse) {
-                row = size.rows - index - 1;
-            }
-
-            return <Cell key={index} x={cell.row} y={columnIndex} b={index} color={cell.color} onCellClick={onCellClick}/>;
+            return <Cell key={index} x={cell.row} y={columnIndex} color={cell.color} onCellClick={onCellClick}/>;
         };
 
 
@@ -31,10 +24,6 @@ class Column extends React.Component {
             cells = cells.reverse();
         }
 
-        // const cellsBottomUp = cells.slice();
-        console.log("Cols %i len %i", size.rows, cells.length);
-
-        // const spacerSize = 0;
         const spacerSize = size.rows - cells.length;
         const classes = "column column-" + columnIndex + " top-" + spacerSize;
 
