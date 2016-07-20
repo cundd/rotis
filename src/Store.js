@@ -67,10 +67,12 @@ export default class Store {
         let row;
         let i, j;
 
+        const maxColors = Math.min(rowCount, columnCount);
+
         for (i = 0; i < columnCount; i++) {
             row = [];
             for (j = 0; j < rowCount; j++) {
-                row.push(this.getRandomColor());
+                row.push(this.getRandomColor(maxColors));
             }
             columns.push(row);
         }
@@ -78,8 +80,13 @@ export default class Store {
         return columns;
     }
 
-    getRandomColor() {
+    getRandomColor(maxColors) {
         let keys = Object.keys(Color);
+
+        if (maxColors < keys.length) {
+            keys = keys.slice(0, maxColors);
+        }
+
         const randomPosition = Math.floor(Math.random() * keys.length);
 
         return keys[randomPosition];
