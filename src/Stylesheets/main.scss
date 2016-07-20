@@ -105,6 +105,14 @@ body {
         display: block;
         float: left;
         padding: 0 ($std-space/2);
+
+        &.-right {
+            float: right;
+        }
+
+        &.version {
+            color: $gray-medium;
+        }
     }
 
     a {

@@ -138,6 +138,10 @@ body {
     display: block;
     float: left;
     padding: 0 10px; }
+    .toolbar .toolbar-item.-right {
+      float: right; }
+    .toolbar .toolbar-item.version {
+      color: #555555; }
   .toolbar a {
     text-decoration: none;
     color: #999; }
