@@ -40,7 +40,8 @@ export default class Store {
             },
             'grid': grid,
             'columns': grid.getData(),
-            'score': 0
+            'score': 0,
+            'version': '0.0.1'
         };
     }
 

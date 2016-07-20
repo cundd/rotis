@@ -3,6 +3,7 @@ import Column from './Column';
 import Modal from './Modal';
 import Score from './Score';
 import Reload from './Reload';
+import Version from './Version';
 
 export default class extends React.Component {
     constructor() {
@@ -47,11 +48,18 @@ export default class extends React.Component {
             modal = <Modal message="Game over" onClick={_onModalClick}/>
         }
 
+        this.lockScrolling();
 
         return <div className="game-window">
-            <div className="toolbar"><Score score={state.score}/><Reload onClick={_onReloadClick}/></div>
+            <div className="toolbar"><Score score={state.score}/><Reload onClick={_onReloadClick}/><Version version={state.version} /></div>
             <div className="grid grid-reverse">{state.columns.map(createColumn)}</div>
             {modal}
         </div>;
+    }
+
+    lockScrolling() {
+        document.body.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+        });
     }
 }

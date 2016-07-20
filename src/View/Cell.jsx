@@ -1,10 +1,22 @@
 import React from 'react';
 
-const Cell = React.createClass({
-    render: function() {
+class Cell extends React.Component {
+    render() {
+        const _this = this;
+        const triggerHandler = (event) => {
+            _this.props.onCellClick(event, _this);
+        };
         const className = "cell cell-color-" + this.props.color;
-        return <div className={className} onClick={(e) => {this.props.onCellClick(e, this)}}>{this.props.y}:{this.props.x}</div>;
+
+        // if (this.isTouchDevice()) {
+        //     return <div className={className} onTouchEnd={triggerHandler}>{this.props.y}:{this.props.x}</div>;
+        // }
+        return <div className={className} onClick={triggerHandler}>{this.props.y}:{this.props.x}</div>;
     }
-});
+
+    isTouchDevice() {
+        return (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch);
+    }
+}
 
 export default Cell;
