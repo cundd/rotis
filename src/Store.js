@@ -22,7 +22,7 @@ export default class Store {
         }
 
         return [
-            Math.floor(applicationWindow.innerHeight / cellSize) -1,
+            Math.floor(applicationWindow.innerHeight / cellSize) - 1,
             Math.floor(applicationWindow.innerWidth / cellSize) - 1
         ];
     }
@@ -33,6 +33,8 @@ export default class Store {
         const columnCount = rowCol[1];
         const grid = new Grid(this.buildRandomColumns(rowCount, columnCount));
 
+        let highScore = this.applicationWindow().localStorage.getItem('highScore') || 0;
+
         return {
             'size': {
                 rows: rowCount,
@@ -41,6 +43,7 @@ export default class Store {
             'grid': grid,
             'columns': grid.getData(),
             'score': 0,
+            'highScore': highScore,
             'version': '0.0.1'
         };
     }
@@ -50,6 +53,7 @@ export default class Store {
     }
 
     setState(state) {
+        this._changeHighScore(state);
         this._state = state;
         this.rootComponent.setState(state);
     }
@@ -90,5 +94,11 @@ export default class Store {
         const randomPosition = Math.floor(Math.random() * keys.length);
 
         return keys[randomPosition];
+    }
+
+    _changeHighScore(state) {
+        if (state.highScore < state.score) {
+            this.applicationWindow().localStorage.setItem('highScore', state.score);
+        }
     }
 }

@@ -43,7 +43,8 @@ body {
 
 .grid {
     @include clear();
-    border-bottom: ($std-space/2) solid $bg;
+    border: ($std-space/2) solid $bg;
+    //border-top:none;
 
     .column {
         float: left;
@@ -114,7 +115,7 @@ body {
     line-height: 30px;
     color: $gray;
     background: $gray-darker;
-    border-bottom: 4px solid $bg;
+    //border-bottom: ($std-space/2) solid $bg;
     //text-shadow: 1px 2px 3px $gray-dark, 0 0 0 #000, 1px 2px 3px $gray-dark;
     //text-transform: uppercase;
 
@@ -128,6 +129,11 @@ body {
         }
 
         &.version {
+            color: $gray-medium;
+        }
+
+        .high-score {
+            font-size: 10px;
             color: $gray-medium;
         }
     }

@@ -9,7 +9,7 @@ body {
   margin: 0; }
 
 .grid {
-  border-bottom: 10px solid #1b1827; }
+  border: 10px solid #1b1827; }
   .grid {
     display: block;
     clear: both; }
@@ -172,8 +172,7 @@ body {
   font-size: 12px;
   line-height: 30px;
   color: #999;
-  background: #2c2b33;
-  border-bottom: 4px solid #1b1827; }
+  background: #2c2b33; }
   .toolbar {
     display: block;
     clear: both; }
@@ -188,6 +187,9 @@ body {
     .toolbar .toolbar-item.-right {
       float: right; }
     .toolbar .toolbar-item.version {
+      color: #5b5969; }
+    .toolbar .toolbar-item .high-score {
+      font-size: 10px;
       color: #5b5969; }
   .toolbar a {
     text-decoration: none;

@@ -40,7 +40,8 @@ export default class extends React.Component {
         const _onCellClick = this.onCellClick.bind(this);
         const _onModalClick = this.onModalClick.bind(this);
         const createColumn = function (column, index) {
-            return <Column key={index} data={column} columnIndex={index} reverse="true" onCellClick={_onCellClick} size={size}/>;
+            return <Column key={index} data={column} columnIndex={index} reverse="true" onCellClick={_onCellClick}
+                           size={size}/>;
         };
 
         let modal;
@@ -51,14 +52,18 @@ export default class extends React.Component {
         this.lockScrolling();
 
         return <div className="game-window">
-            <div className="toolbar"><Score score={state.score}/><Reload onClick={_onReloadClick}/><Version version={state.version} /></div>
+            <div className="toolbar">
+                <Score score={state.score} highScore={state.highScore}/>
+                <Reload onClick={_onReloadClick}/>
+                <Version version={state.version}/>
+            </div>
             <div className="grid grid-reverse">{state.columns.map(createColumn)}</div>
             {modal}
         </div>;
     }
 
     lockScrolling() {
-        document.body.addEventListener('touchmove', function(e) {
+        document.body.addEventListener('touchmove', function (e) {
             e.preventDefault();
         });
     }
