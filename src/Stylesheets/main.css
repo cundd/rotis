@@ -4,7 +4,9 @@
 body {
   font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
   background: #1b1827;
-  color: white; }
+  color: white;
+  padding: 0;
+  margin: 0; }
 
 .grid {
   border-bottom: 10px solid #1b1827; }
@@ -97,7 +99,7 @@ body {
     padding-top: 1560px; }
 
 .cell {
-  color: rgba(0, 0, 0, 0.2);
+  color: transparent;
   width: 40px;
   height: 40px;
   line-height: 60px;
@@ -112,28 +114,73 @@ body {
   .cell:active {
     box-shadow: inset 1px 2px 5px rgba(0, 0, 0, 0.5); }
   .cell.cell-color-red {
-    background: #b70029; }
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100 */
+    background: linear-gradient(135deg, #b70029 0%, #84001e 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b70029', endColorstr='#84001e', GradientType=1);
+    /* IE6-9 */ }
   .cell.cell-color-blue {
-    background: #0c1b80; }
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100 */
+    background: linear-gradient(135deg, #0e209a 0%, #0a166b 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0e209a', endColorstr='#0a166b', GradientType=1);
+    /* IE6-9 */ }
   .cell.cell-color-green {
-    background: #29a227; }
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100 */
+    background: linear-gradient(135deg, #29a227 0%, #1f791d 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#29a227', endColorstr='#1f791d', GradientType=1);
+    /* IE6-9 */ }
   .cell.cell-color-yellow {
-    background: #ffdc10; }
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100 */
+    background: linear-gradient(135deg, #ffdc10 0%, #dcbc00 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffdc10', endColorstr='#dcbc00', GradientType=1);
+    /* IE6-9 */ }
   .cell.cell-color-brown {
-    background: #a5452f; }
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100 */
+    background: linear-gradient(135deg, #a5452f 0%, #7d3424 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a5452f', endColorstr='#7d3424', GradientType=1);
+    /* IE6-9 */ }
   .cell.cell-color-pink {
-    background: #ff9baa; }
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100 */
+    background: linear-gradient(135deg, #ff9baa 0%, #ff687f 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff9baa', endColorstr='#ff687f', GradientType=1);
+    /* IE6-9 */ }
   .cell.cell-color-mint {
-    background: lightseagreen; }
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100 */
+    background: linear-gradient(135deg, lightseagreen 0%, #188781 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='lightseagreen', endColorstr='#188781', GradientType=1);
+    /* IE6-9 */ }
   .cell.cell-color-violet {
-    background: #640ca4; }
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100 */
+    background: linear-gradient(135deg, #790cc1 0%, #5b0991 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#790cc1', endColorstr='#5b0991', GradientType=1);
+    /* IE6-9 */ }
   .cell.cell-color-orange {
-    background: orange; }
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100 */
+    background: linear-gradient(135deg, orange 0%, #cc8400 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='orange', endColorstr='#cc8400', GradientType=1);
+    /* IE6-9 */ }
 
 .toolbar {
   font-size: 12px;
   line-height: 30px;
-  color: #999; }
+  color: #999;
+  background: #2c2b33;
+  border-bottom: 4px solid #1b1827; }
+  .toolbar {
+    display: block;
+    clear: both; }
+  .toolbar:before, .toolbar:after {
+    clear: both;
+    display: block;
+    content: " "; }
   .toolbar .toolbar-item {
     display: block;
     float: left;
@@ -141,13 +188,13 @@ body {
     .toolbar .toolbar-item.-right {
       float: right; }
     .toolbar .toolbar-item.version {
-      color: #555555; }
+      color: #5b5969; }
   .toolbar a {
     text-decoration: none;
     color: #999; }
     .toolbar a:active {
-      color: #555555;
-      background: #232323; }
+      color: #5b5969;
+      background: #2c2b33; }
 
 .modal-overlay {
   position: fixed;
@@ -160,7 +207,7 @@ body {
     margin: 20px auto;
     width: 300px;
     max-width: 80%;
-    background: #333;
+    background: #383741;
     padding: 20px;
     color: #999;
     cursor: pointer;

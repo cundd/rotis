@@ -1,8 +1,8 @@
 $bg: #1b1827;
 $gray: #999;
-$gray-medium: #555555;
-$gray-dark: #333;
-$gray-darker: #232323;
+$gray-medium: #5b5969;
+$gray-dark: #383741;
+$gray-darker: #2c2b33;
 $std-space: 20px;
 $cell-size: 40px;
 
@@ -14,6 +14,8 @@ body {
     font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
     background: $bg;
     color: white;
+    padding: 0;
+    margin: 0;
 }
 
 @mixin clear() {
@@ -27,6 +29,16 @@ body {
         display: block;
         content: " ";
     }
+}
+
+@mixin gradient($start, $end, $rotation: -45deg) {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100 */
+    //background: $start; /* Old browsers */
+    //background: -moz-linear-gradient($rotation,  $start 0%, $end 100%); /* FF3.6-15 */
+    //background: -webkit-linear-gradient($rotation,  $start 0%,$end 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(180 + $rotation, $start 0%, $end 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$start}', endColorstr='#{$end}', GradientType=1); /* IE6-9 */
+
 }
 
 .grid {
@@ -47,13 +59,14 @@ body {
 }
 
 .cell {
-    color: rgba(#000, 0.2);
+    color: transparent;
+    //color: rgba(#000, 0.2);
     width: $cell-size;
     height: $cell-size;
     line-height: 60px;
     text-align: center;
     cursor: pointer;
-    transition: box-shadow 200ms ;
+    transition: box-shadow 200ms;
     font-size: 10px;
 
     -webkit-user-select: none;
@@ -65,39 +78,43 @@ body {
         box-shadow: inset 1px 2px 5px rgba(#000, 0.5);
     }
 
+    $percent: 10%;
     &.cell-color-red {
-        background: #b70029;
+        @include gradient(#b70029, darken(#b70029, $percent));
     }
     &.cell-color-blue {
-        background: #0c1b80;
+        @include gradient(#0e209a, darken(#0e209a, $percent));
     }
     &.cell-color-green {
-        background: #29a227;
+        @include gradient(#29a227, darken(#29a227, $percent));
     }
     &.cell-color-yellow {
-        background: #ffdc10;
+        @include gradient(#ffdc10, darken(#ffdc10, $percent));
     }
     &.cell-color-brown {
-        background: #a5452f;
+        @include gradient(#a5452f, darken(#a5452f, $percent));
     }
     &.cell-color-pink {
-        background: #ff9baa;
+        @include gradient(#ff9baa, darken(#ff9baa, $percent));
     }
     &.cell-color-mint {
-        background: lightseagreen;
+        @include gradient(lightseagreen, darken(lightseagreen, $percent));
     }
     &.cell-color-violet {
-        background: #640ca4;
+        @include gradient(#790cc1, darken(#790cc1, $percent));
     }
     &.cell-color-orange {
-        background: orange;
+        @include gradient(orange, darken(orange, $percent));
     }
 }
 
 .toolbar {
+    @include clear();
     font-size: 12px;
     line-height: 30px;
     color: $gray;
+    background: $gray-darker;
+    border-bottom: 4px solid $bg;
     //text-shadow: 1px 2px 3px $gray-dark, 0 0 0 #000, 1px 2px 3px $gray-dark;
     //text-transform: uppercase;
 
