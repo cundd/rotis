@@ -6,6 +6,8 @@ $gray-darker: #2c2b33;
 $std-space: 20px;
 $cell-size: 40px;
 
+$percent: 8%;
+
 $red: #b70029;
 $blue: #0e209a;
 $green: #29a227;
@@ -103,7 +105,6 @@ body {
         box-shadow: inset 1px 2px 5px rgba(#000, 0.5);
     }
 
-    $percent: 10%;
     &.cell-color-red {
         @include gradient($red, darken($red, $percent));
     }

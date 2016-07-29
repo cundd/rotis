@@ -119,57 +119,57 @@ body {
     box-shadow: inset 1px 2px 5px rgba(0, 0, 0, 0.5); }
   .cell.cell-color-red {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100 */
-    background: linear-gradient(135deg, #b70029 0%, #84001e 100%);
+    background: linear-gradient(135deg, #b70029 0%, #8e0020 100%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b70029', endColorstr='#84001e', GradientType=1);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b70029', endColorstr='#8e0020', GradientType=1);
     /* IE6-9 */ }
   .cell.cell-color-blue {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100 */
-    background: linear-gradient(135deg, #0e209a 0%, #0a166b 100%);
+    background: linear-gradient(135deg, #0e209a 0%, #0b1875 100%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0e209a', endColorstr='#0a166b', GradientType=1);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0e209a', endColorstr='#0b1875', GradientType=1);
     /* IE6-9 */ }
   .cell.cell-color-green {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100 */
-    background: linear-gradient(135deg, #29a227 0%, #1f791d 100%);
+    background: linear-gradient(135deg, #29a227 0%, #21811f 100%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#29a227', endColorstr='#1f791d', GradientType=1);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#29a227', endColorstr='#21811f', GradientType=1);
     /* IE6-9 */ }
   .cell.cell-color-yellow {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100 */
-    background: linear-gradient(135deg, #ffef09 0%, #d5c700 100%);
+    background: linear-gradient(135deg, #ffef09 0%, #dfd100 100%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffef09', endColorstr='#d5c700', GradientType=1);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffef09', endColorstr='#dfd100', GradientType=1);
     /* IE6-9 */ }
   .cell.cell-color-brown {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100 */
-    background: linear-gradient(135deg, #a5452f 0%, #7d3424 100%);
+    background: linear-gradient(135deg, #a5452f 0%, #853826 100%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a5452f', endColorstr='#7d3424', GradientType=1);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a5452f', endColorstr='#853826', GradientType=1);
     /* IE6-9 */ }
   .cell.cell-color-pink {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100 */
-    background: linear-gradient(135deg, #ff9baa 0%, #ff687f 100%);
+    background: linear-gradient(135deg, #ff9baa 0%, #ff7287 100%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff9baa', endColorstr='#ff687f', GradientType=1);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff9baa', endColorstr='#ff7287', GradientType=1);
     /* IE6-9 */ }
   .cell.cell-color-mint {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100 */
-    background: linear-gradient(135deg, lightseagreen 0%, #188781 100%);
+    background: linear-gradient(135deg, lightseagreen 0%, #1a8f89 100%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='lightseagreen', endColorstr='#188781', GradientType=1);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='lightseagreen', endColorstr='#1a8f89', GradientType=1);
     /* IE6-9 */ }
   .cell.cell-color-violet {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100 */
-    background: linear-gradient(135deg, #790cc1 0%, #5b0991 100%);
+    background: linear-gradient(135deg, #790cc1 0%, #610a9b 100%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#790cc1', endColorstr='#5b0991', GradientType=1);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#790cc1', endColorstr='#610a9b', GradientType=1);
     /* IE6-9 */ }
   .cell.cell-color-orange {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100 */
-    background: linear-gradient(135deg, orange 0%, #cc8400 100%);
+    background: linear-gradient(135deg, orange 0%, #d68b00 100%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='orange', endColorstr='#cc8400', GradientType=1);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='orange', endColorstr='#d68b00', GradientType=1);
     /* IE6-9 */ }
 
 .toolbar {
