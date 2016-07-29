@@ -6,8 +6,23 @@ $gray-darker: #2c2b33;
 $std-space: 20px;
 $cell-size: 40px;
 
+$red: #b70029;
+$blue: #0e209a;
+$green: #29a227;
+$yellow: #ffef09;
+$brown: #a5452f;
+$pink: #ff9baa;
+$turquoise: lightseagreen;
+$violet: #790cc1;
+$orange: orange;
+
 *, *:after, *:before {
     box-sizing: border-box;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 body {
@@ -70,6 +85,15 @@ body {
     transition: box-shadow 200ms;
     font-size: 10px;
 
+    // -- Circle style -- //
+    //border-radius: 20px;
+
+    // -- Glass style -- //
+    //$border-white: rgba(white, .1);
+    //$border-black: rgba(black, .0);
+    //border: 2px solid;
+    //border-color: $border-white $border-black $border-black $border-white;
+
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -81,31 +105,31 @@ body {
 
     $percent: 10%;
     &.cell-color-red {
-        @include gradient(#b70029, darken(#b70029, $percent));
+        @include gradient($red, darken($red, $percent));
     }
     &.cell-color-blue {
-        @include gradient(#0e209a, darken(#0e209a, $percent));
+        @include gradient($blue, darken($blue, $percent));
     }
     &.cell-color-green {
-        @include gradient(#29a227, darken(#29a227, $percent));
+        @include gradient($green, darken($green, $percent));
     }
     &.cell-color-yellow {
-        @include gradient(#ffdc10, darken(#ffdc10, $percent));
+        @include gradient($yellow, darken($yellow, $percent));
     }
     &.cell-color-brown {
-        @include gradient(#a5452f, darken(#a5452f, $percent));
+        @include gradient($brown, darken($brown, $percent));
     }
     &.cell-color-pink {
-        @include gradient(#ff9baa, darken(#ff9baa, $percent));
+        @include gradient($pink, darken($pink, $percent));
     }
     &.cell-color-mint {
-        @include gradient(lightseagreen, darken(lightseagreen, $percent));
+        @include gradient($turquoise, darken($turquoise, $percent));
     }
     &.cell-color-violet {
-        @include gradient(#790cc1, darken(#790cc1, $percent));
+        @include gradient($violet, darken($violet, $percent));
     }
     &.cell-color-orange {
-        @include gradient(orange, darken(orange, $percent));
+        @include gradient($orange, darken($orange, $percent));
     }
 }
 

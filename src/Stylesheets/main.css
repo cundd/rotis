@@ -1,5 +1,9 @@
 *, *:after, *:before {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
 
 body {
   font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
@@ -133,9 +137,9 @@ body {
     /* IE6-9 */ }
   .cell.cell-color-yellow {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100 */
-    background: linear-gradient(135deg, #ffdc10 0%, #dcbc00 100%);
+    background: linear-gradient(135deg, #ffef09 0%, #d5c700 100%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffdc10', endColorstr='#dcbc00', GradientType=1);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffef09', endColorstr='#d5c700', GradientType=1);
     /* IE6-9 */ }
   .cell.cell-color-brown {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100 */
