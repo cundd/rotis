@@ -68,6 +68,10 @@ export default class Grid {
             ).length;
     }
 
+    isEmpty() {
+        return !(this._columns && this._columns.length);
+    }
+
     /**
      *
      * @param {Cell} cell
@@ -131,6 +135,33 @@ export default class Grid {
             if (!previousCells.contains(sibling)) {
                 matching = matching.concat(this._findConnectedCells(sibling, previousCells));
             }
+        }
+
+        return matching;
+    }
+
+    findConnectedSiblings(cell:Cell) {
+        let matching = {};
+        const color = this._getCellColor(cell.row, cell.column)
+
+        // Check left
+        if (color === this._getCellColor(cell.row, cell.column - 1)) {
+            matching.left = (new Cell(color, cell.row, cell.column - 1));
+        }
+
+        // Check right
+        if (color === this._getCellColor(cell.row, cell.column + 1)) {
+            matching.right = (new Cell(color, cell.row, cell.column + 1));
+        }
+
+        // Check up
+        if (color === this._getCellColor(cell.row - 1, cell.column)) {
+            matching.up = (new Cell(color, cell.row - 1, cell.column));
+        }
+
+        // Check down
+        if (color === this._getCellColor(cell.row + 1, cell.column)) {
+            matching.down = (new Cell(color, cell.row + 1, cell.column));
         }
 
         return matching;

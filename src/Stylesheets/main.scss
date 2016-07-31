@@ -96,10 +96,21 @@ body {
     //border: 2px solid;
     //border-color: $border-white $border-black $border-black $border-white;
 
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+
+    // Outline connected
+    border: 1px solid rgba(white, .5);
+    &.-connected-up {
+        border-bottom: none; // the grid is flipped
+    }
+    &.-connected-down {
+        border-top: none; // the grid is flipped
+    }
+    &.-connected-left {
+        border-left: none;
+    }
+    &.-connected-right {
+        border-right: none;
+    }
 
     &:active {
         box-shadow: inset 1px 2px 5px rgba(#000, 0.5);

@@ -40,13 +40,17 @@ export default class extends React.Component {
         const _onCellClick = this.onCellClick.bind(this);
         const _onModalClick = this.onModalClick.bind(this);
         const createColumn = function (column, index) {
-            return <Column key={index} data={column} columnIndex={index} reverse="true" onCellClick={_onCellClick}
+            return <Column key={index} data={column} columnIndex={index} grid={grid} reverse="true" onCellClick={_onCellClick}
                            size={size}/>;
         };
 
         let modal;
         if (grid && !grid.hasConnectedCells()) {
-            modal = <Modal message="Game over" onClick={_onModalClick}/>
+            if (grid.isEmpty()) {
+                modal = <Modal message="You won" onClick={_onModalClick}/>
+            } else {
+                modal = <Modal message="Game over" onClick={_onModalClick}/>
+            }
         }
 
         this.lockScrolling();

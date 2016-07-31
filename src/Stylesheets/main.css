@@ -111,10 +111,15 @@ body {
   cursor: pointer;
   transition: box-shadow 200ms;
   font-size: 10px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none; }
+  border: 1px solid rgba(255, 255, 255, 0.5); }
+  .cell.-connected-up {
+    border-bottom: none; }
+  .cell.-connected-down {
+    border-top: none; }
+  .cell.-connected-left {
+    border-left: none; }
+  .cell.-connected-right {
+    border-right: none; }
   .cell:active {
     box-shadow: inset 1px 2px 5px rgba(0, 0, 0, 0.5); }
   .cell.cell-color-red {

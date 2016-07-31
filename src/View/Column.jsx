@@ -7,9 +7,10 @@ class Column extends React.Component {
         const size = this.props.size;
         const columnIndex = this.props.columnIndex;
         const onCellClick = this.props.onCellClick;
+        const grid = this.props.grid;
 
         const createCell = function (cell, index) {
-            return <Cell key={index} x={cell.row} y={columnIndex} color={cell.color} onCellClick={onCellClick}/>;
+            return <Cell key={index} x={cell.row} y={columnIndex} color={cell.color} grid={grid} onCellClick={onCellClick}/>;
         };
 
 
