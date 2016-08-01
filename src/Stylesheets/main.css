@@ -111,7 +111,7 @@ body {
   cursor: pointer;
   transition: box-shadow 200ms;
   font-size: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.5); }
+  border: 1px solid #1b1827; }
   .cell.-connected-up {
     border-bottom: none; }
   .cell.-connected-down {

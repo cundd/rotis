@@ -17,6 +17,7 @@ export default class Store {
         const cellSize = 40;
         const applicationWindow = this.applicationWindow();
         const hash = applicationWindow.location.hash;
+        console.log(hash);
         if (hash) {
             return hash.substr(1).split('x');
         }
@@ -44,7 +45,7 @@ export default class Store {
             'columns': grid.getData(),
             'score': 0,
             'highScore': highScore,
-            'version': '0.0.1'
+            'version': '0.0.2'
         };
     }
 

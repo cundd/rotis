@@ -98,7 +98,7 @@ body {
 
 
     // Outline connected
-    border: 1px solid rgba(white, .5);
+    border: 1px solid $bg;
     &.-connected-up {
         border-bottom: none; // the grid is flipped
     }
