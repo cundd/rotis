@@ -3,7 +3,7 @@ import CellCollection from './CellCollection.js';
 
 export default class Grid {
     constructor(columns) {
-        this._columns = columns;
+        this._columns = columns || [];
     }
 
     removeCells(cellsToRemove) {
@@ -24,8 +24,8 @@ export default class Grid {
             let rowsToRemoveInCurrentColumn = columnsToRowsMap[currentColumnIndex];
 
             if (typeof rowsToRemoveInCurrentColumn !== 'undefined') {
-                console.log('Row(s) to remove in current column', rowsToRemoveInCurrentColumn, currentColumnIndex)
-                
+                console.log('Row(s) to remove in current column', rowsToRemoveInCurrentColumn, currentColumnIndex);
+
                 // There are items to remove in the current column
                 return column.filter(function (cell, rowIndex) {
                     return rowsToRemoveInCurrentColumn.indexOf(rowIndex) === -1;
@@ -46,27 +46,51 @@ export default class Grid {
 
     hasConnectedCells() {
         let columns = this._columns;
-        return 0 < columns.filter(
-                function (cells, column) {
-                    const cellsLength = cells.length;
+        const filterFunction = function (cells, column) {
+            const cellsLength = cells.length;
 
-                    for (let i = 0; i < cellsLength; i += 1) {
-                        const color = cells[i];
-                        const nextColor = cells[i + 1];
-                        if (color === nextColor) {
-                            return true;
-                        }
-
-                        const nextColumn = columns[column + 1];
-                        if (nextColumn && color === nextColumn[i]) {
-                            return true;
-                        }
-                    }
-
-                    return false;
+            for (let i = 0; i < cellsLength; i += 1) {
+                const color = cells[i];
+                const nextColor = cells[i + 1];
+                if (color === nextColor) {
+                    return true;
                 }
-            ).length;
+
+                const nextColumn = columns[column + 1];
+                if (nextColumn && color === nextColumn[i]) {
+                    return true;
+                }
+            }
+
+            return false;
+        };
+
+        return 0 < columns.filter(filterFunction).length;
     }
+
+    // numberOfConnectedCells() {
+    //     // const columns = this._columns;
+    //     return this._columns.reduce(function (previousValue, cells, columnIndex, columns) {
+    //         const cellsLength = cells.length;
+    //         let currentCount = 0;
+    //
+    //         for (let i = 0; i < cellsLength; i += 1) {
+    //             const color = cells[i];
+    //             const nextColor = cells[i + 1];
+    //             if (color === nextColor) {
+    //                 currentCount += 1;
+    //             }
+    //
+    //             const nextColumn = columns[columnIndex + 1];
+    //             if (nextColumn && color === nextColumn[i]) {
+    //                 currentCount += 1;
+    //             }
+    //         }
+    //
+    //         return previousValue + currentCount;
+    //
+    //     }, 0);
+    // }
 
     isEmpty() {
         return !(this._columns && this._columns.length);
@@ -101,7 +125,7 @@ export default class Grid {
     _findConnectedCells(cell:Cell, previousCells:CellCollection) {
         let sibling;
         let matching = [cell];
-        const color = this._getCellColor(cell.row, cell.column)
+        const color = this._getCellColor(cell.row, cell.column);
 
         previousCells.add(cell);
 
@@ -142,7 +166,7 @@ export default class Grid {
 
     findConnectedSiblings(cell:Cell) {
         let matching = {};
-        const color = this._getCellColor(cell.row, cell.column)
+        const color = this._getCellColor(cell.row, cell.column);
 
         // Check left
         if (color === this._getCellColor(cell.row, cell.column - 1)) {

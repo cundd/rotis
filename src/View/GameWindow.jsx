@@ -4,13 +4,14 @@ import Modal from './Modal';
 import Score from './Score';
 import Reload from './Reload';
 import Version from './Version';
+import Grid from '../Grid';
 
 export default class extends React.Component {
     constructor() {
         super();
         this.state = {
             columns: [],
-            grid: null,
+            grid: new Grid,
             score: 0
         };
     }
@@ -45,7 +46,7 @@ export default class extends React.Component {
         };
 
         let modal;
-        if (grid && !grid.hasConnectedCells()) {
+        if (!grid.hasConnectedCells()) {
             if (grid.isEmpty()) {
                 modal = <Modal message="You won" onClick={_onModalClick}/>
             } else {

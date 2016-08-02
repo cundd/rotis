@@ -215,12 +215,14 @@ body {
   top: 0;
   background: rgba(0, 0, 0, 0.5); }
   .modal-overlay .modal {
+    border: 1px solid #1b1827;
     margin: 20px auto;
     width: 300px;
     max-width: 80%;
     background: #383741;
     padding: 20px;
     color: #999;
+    text-shadow: 0 0 1px rgba(27, 24, 39, 0.8);
     cursor: pointer;
     -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
