@@ -1,4 +1,4 @@
-import Cell from './Cell.js';
+import CellData from './CellData';
 
 class ClickHandler {
     constructor() {
@@ -8,7 +8,7 @@ class ClickHandler {
 
     handleClick(color, x, y) {
         const grid = this.store.getState().grid;
-        const connectedCells = grid.findConnectedCells(new Cell(color, x, y));
+        const connectedCells = grid.findConnectedCells(new CellData(color, x, y));
         const newGrid = grid.removeCells(connectedCells);
 
         this._updateState(newGrid, connectedCells);
@@ -24,7 +24,7 @@ class ClickHandler {
 
         const newState = Object.assign({}, stateBefore, {
             grid: grid,
-            columns: grid.getData(),
+            columns: grid.getColumns(),
             score: newScore
         });
 

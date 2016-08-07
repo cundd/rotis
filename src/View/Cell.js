@@ -1,5 +1,5 @@
 import React from 'react';
-import DataCell from '../Cell';
+import DataCell from '../CellData';
 
 class Cell extends React.Component {
     render() {

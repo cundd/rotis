@@ -10,11 +10,12 @@ class Column extends React.Component {
         const grid = this.props.grid;
 
         const createCell = function (cell, index) {
-            return <Cell key={index} x={cell.row} y={columnIndex} color={cell.color} grid={grid} onCellClick={onCellClick}/>;
+            return <Cell key={index} x={cell.row} y={columnIndex} color={cell.color} grid={grid}
+                         onCellClick={onCellClick}/>;
         };
 
 
-        let cells = this.props.data.map(function(color, index) {
+        let cells = this.props.data.map(function (color, index) {
             return {
                 color: color,
                 row: index

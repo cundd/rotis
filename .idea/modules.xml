@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/rotis.iml" filepath="$PROJECT_DIR$/.idea/rotis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/rotis-cra.iml" filepath="$PROJECT_DIR$/.idea/rotis-cra.iml" />
     </modules>
   </component>
 </project>

@@ -1,12 +1,23 @@
 import Color from './Color';
 import Grid from './Grid';
+import Environment from './Environment';
 
 export default class Store {
-    constructor(renderCallback, clickHandler) {
-        clickHandler.store = this;
+    static needs() {
+        return ['clickHandler', 'environment'];
+    };
 
+    constructor(renderCallback, clickHandler) {
+        /** @type {Environment} */
+        this.environment = null;
+        this.clickHandler = clickHandler || {};
         this.rootComponent = renderCallback(this);
         this.setState(this.getInitialState());
+    }
+
+    didResolveDependencies() {
+        this.clickHandler.store = this;
+        this.environment.prepare();
     }
 
     applicationWindow() {
@@ -42,7 +53,7 @@ export default class Store {
                 columns: columnCount
             },
             'grid': grid,
-            'columns': grid.getData(),
+            'columns': grid.getColumns(),
             'score': 0,
             'highScore': highScore,
             'version': '0.0.2'

@@ -4,39 +4,24 @@ import Modal from './Modal';
 import Score from './Score';
 import Reload from './Reload';
 import Version from './Version';
-import Grid from '../Grid';
 
 export default class extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            columns: [],
-            grid: new Grid,
-            score: 0
-        };
-    }
-
     onCellClick(event, cell) {
         const cellProps = cell.props;
         this.props.clickHandler.handleClick(cellProps.color, cellProps.x, cellProps.y, this);
     }
 
     onModalClick() {
-        this.restart();
+        this.props.restart();
     }
 
     onReloadClick() {
-        this.restart();
-    }
-
-    restart() {
-        this.props.store.reset();
+        this.props.restart();
     }
 
     render() {
-        const state = this.state;
-        const grid = state.grid;
-        const size = state.size;
+        const grid = this.props.grid;
+        const size = this.props.size;
         const _onReloadClick = this.onReloadClick.bind(this);
         const _onCellClick = this.onCellClick.bind(this);
         const _onModalClick = this.onModalClick.bind(this);
@@ -56,11 +41,11 @@ export default class extends React.Component {
 
         return <div className="game-window">
             <div className="toolbar">
-                <Score score={state.score} highScore={state.highScore}/>
+                <Score score={this.props.score} highScore={this.props.highScore}/>
                 <Reload onClick={_onReloadClick}/>
-                <Version version={state.version}/>
+                <Version version={this.props.version}/>
             </div>
-            <div className="grid grid-reverse">{state.columns.map(createColumn)}</div>
+            <div className="grid grid-reverse">{grid.getColumns().map(createColumn)}</div>
             {modal}
         </div>;
     }

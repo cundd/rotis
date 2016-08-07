@@ -1,4 +1,4 @@
-import Cell from './Cell.js';
+import CellData from './CellData'
 import CellCollection from './CellCollection.js';
 
 export default class Grid {
@@ -101,7 +101,7 @@ export default class Grid {
      * @param {Cell} cell
      * @returns {*}
      */
-    findConnectedCells(cell:Cell) {
+    findConnectedCells(cell) {
         const cells = this._findConnectedCells(cell, new CellCollection());
 
         if (cells.length <= 1) {
@@ -110,11 +110,11 @@ export default class Grid {
         return cells;
     }
 
-    getData() {
+    getColumns() {
         return this._columns.slice();
     }
 
-    _getColumn(col:Number) {
+    _getColumn(col) {
         return this._columns[col] || [];
     }
 
@@ -122,7 +122,7 @@ export default class Grid {
         return this._getColumn(col)[row];
     }
 
-    _findConnectedCells(cell:Cell, previousCells:CellCollection) {
+    _findConnectedCells(cell, previousCells) {
         let sibling;
         let matching = [cell];
         const color = this._getCellColor(cell.row, cell.column);
@@ -131,7 +131,7 @@ export default class Grid {
 
         // Check left
         if (color === this._getCellColor(cell.row, cell.column - 1)) {
-            sibling = new Cell(color, cell.row, cell.column - 1);
+            sibling = new CellData(color, cell.row, cell.column - 1);
             if (!previousCells.contains(sibling)) {
                 matching = matching.concat(this._findConnectedCells(sibling, previousCells));
             }
@@ -139,7 +139,7 @@ export default class Grid {
 
         // Check right
         if (color === this._getCellColor(cell.row, cell.column + 1)) {
-            sibling = new Cell(color, cell.row, cell.column + 1);
+            sibling = new CellData(color, cell.row, cell.column + 1);
             if (!previousCells.contains(sibling)) {
                 matching = matching.concat(this._findConnectedCells(sibling, previousCells));
             }
@@ -147,7 +147,7 @@ export default class Grid {
 
         // Check up
         if (color === this._getCellColor(cell.row - 1, cell.column)) {
-            sibling = new Cell(color, cell.row - 1, cell.column);
+            sibling = new CellData(color, cell.row - 1, cell.column);
             if (!previousCells.contains(sibling)) {
                 matching = matching.concat(this._findConnectedCells(sibling, previousCells));
             }
@@ -155,7 +155,7 @@ export default class Grid {
 
         // Check down
         if (color === this._getCellColor(cell.row + 1, cell.column)) {
-            sibling = new Cell(color, cell.row + 1, cell.column);
+            sibling = new CellData(color, cell.row + 1, cell.column);
             if (!previousCells.contains(sibling)) {
                 matching = matching.concat(this._findConnectedCells(sibling, previousCells));
             }
@@ -164,28 +164,28 @@ export default class Grid {
         return matching;
     }
 
-    findConnectedSiblings(cell:Cell) {
+    findConnectedSiblings(cell) {
         let matching = {};
         const color = this._getCellColor(cell.row, cell.column);
 
         // Check left
         if (color === this._getCellColor(cell.row, cell.column - 1)) {
-            matching.left = (new Cell(color, cell.row, cell.column - 1));
+            matching.left = (new CellData(color, cell.row, cell.column - 1));
         }
 
         // Check right
         if (color === this._getCellColor(cell.row, cell.column + 1)) {
-            matching.right = (new Cell(color, cell.row, cell.column + 1));
+            matching.right = (new CellData(color, cell.row, cell.column + 1));
         }
 
         // Check up
         if (color === this._getCellColor(cell.row - 1, cell.column)) {
-            matching.up = (new Cell(color, cell.row - 1, cell.column));
+            matching.up = (new CellData(color, cell.row - 1, cell.column));
         }
 
         // Check down
         if (color === this._getCellColor(cell.row + 1, cell.column)) {
-            matching.down = (new Cell(color, cell.row + 1, cell.column));
+            matching.down = (new CellData(color, cell.row + 1, cell.column));
         }
 
         return matching;
