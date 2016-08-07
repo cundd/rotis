@@ -54,8 +54,6 @@ export default class extends React.Component {
             }
         }
 
-        this.lockScrolling();
-
         return <div className="game-window">
             <div className="toolbar">
                 <Score score={state.score} highScore={state.highScore}/>
@@ -65,11 +63,5 @@ export default class extends React.Component {
             <div className="grid grid-reverse">{state.columns.map(createColumn)}</div>
             {modal}
         </div>;
-    }
-
-    lockScrolling() {
-        document.body.addEventListener('touchmove', function (e) {
-            e.preventDefault();
-        });
     }
 }
