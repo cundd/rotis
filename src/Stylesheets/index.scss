@@ -58,8 +58,12 @@ body {
 
 }
 
-.grid {
+.grid-frame {
     @include clear();
+}
+
+.grid {
+    float: left;
     border: ($std-space/2) solid $bg;
     //border-top:none;
 
@@ -95,7 +99,6 @@ body {
     //$border-black: rgba(black, .0);
     //border: 2px solid;
     //border-color: $border-white $border-black $border-black $border-white;
-
 
     // Outline connected
     border: 1px solid $bg;
@@ -182,6 +185,28 @@ body {
             color: $gray-medium;
             background: $gray-darker;
         }
+    }
+}
+
+.toolbar-item.players {
+    input {
+        width: 1px;
+        height: 1px;
+        font-size:0;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        position: absolute;
+        left: -5000px;
+    }
+
+    label span {
+        display: inline-block;
+        padding: 0 7px;
+    }
+    input[type="radio"]:checked + span {
+        background: $gray;
+        color: $gray-darker;
     }
 }
 

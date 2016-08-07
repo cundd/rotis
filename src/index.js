@@ -6,10 +6,8 @@ import './Stylesheets/index.css';
 import IrLib from 'irlib/dist/irlib';
 
 import Store from './Store';
-import GameWindow from './View/GameWindow';
 import ClickHandler from './ClickHandler';
 import Environment from './Environment';
-
 
 const sl = new IrLib.ServiceLocator();
 
@@ -19,10 +17,10 @@ sl.registerMultiple({
     environment: Environment
 });
 
-sl.create('store', function () {
+sl.create('store', function (store) {
     const clickHandler = sl.get('clickHandler');
     return ReactDOM.render(
-        <App clickHandler={clickHandler}/>,
+        <App clickHandler={clickHandler} store={store}/>,
         document.getElementById('root')
     );
 });

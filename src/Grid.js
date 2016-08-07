@@ -36,7 +36,7 @@ export default class Grid {
         });
 
         if (JSON.stringify(this._columns) === JSON.stringify(newColumns)) {
-            throw "JSON of columns are identical";
+            throw new Error("JSON of columns are identical");
         }
 
         return new Grid(newColumns.filter(function (column) {

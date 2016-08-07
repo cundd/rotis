@@ -4,7 +4,7 @@ export default class CellCollection {
     constructor(collection = []) {
         this.dictionary = {};
 
-        collection.map(function (cell) {
+        collection.forEach(function (cell) {
             this.add(cell);
         });
     }
@@ -14,7 +14,6 @@ export default class CellCollection {
     }
 
     add(cell) {
-        // if (CellData.isPrototypeOf(cell)) {}
         if (!cell instanceof CellData) {
             throw new TypeError('Collection items must be of type "Cell"');
         }

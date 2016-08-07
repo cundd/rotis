@@ -15,9 +15,7 @@ class Cell extends React.Component {
 
         /** @type {Grid} grid */
         const grid = this.props.grid;
-
         const siblings = grid.findConnectedSiblings(new DataCell(color, row, column));
-        console.log(siblings);
 
         if (siblings.up) {
             classNameCollection.push('-connected-up');
@@ -34,14 +32,17 @@ class Cell extends React.Component {
 
         const className = classNameCollection.join(' ');
 
-        if (this.isTouchDevice()) {
+        if (Cell.isTouchDevice()) {
             return <div className={className} onTouchStart={triggerHandler}>{column}:{row}</div>;
         }
         return <div className={className} onClick={triggerHandler}>{column}:{row}</div>;
     }
 
-    isTouchDevice() {
-        return (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch);
+    static isTouchDevice() {
+        return (
+            ('ontouchstart' in window)
+            || (window['DocumentTouch'] && document instanceof window['DocumentTouch'])
+        );
     }
 }
 
