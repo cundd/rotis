@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Score from './Score';
-import ScoreTwoPlayer from './ScoreTwoPlayer';
+import ScoreMultiPlayer from './ScoreMultiPlayer';
 import Reload from './Reload';
 import Version from './Version';
 import Players from './Players';
@@ -9,16 +9,19 @@ import Players from './Players';
 export default class extends React.Component {
     render() {
         let score;
-        if (this.props.players === 1) {
-            score = <Score score={this.props.score} highScore={this.props.highScore}/>;
-        } else {
-            score = <ScoreTwoPlayer score1={this.props.score} score2={this.props.score2}/>;
+        const players = this.props.players;
 
+        if (players.length === 1) {
+            score = <Score score={this.props.score} highScore={this.props.highScore}/>;
+        } else if (players.length > 1) {
+            score = <ScoreMultiPlayer players={players} score1={players['0'].score}
+                                    score2={players['1'].score}/>;
         }
+
         return <div className="toolbar">
             <div className="section-left">
                 <Reload onClick={this.props.onReloadClick}/>
-                <Players players={this.props.players} onChange={this.props.onPlayersChange}/>
+                <Players players={players} onChange={this.props.onPlayersChange}/>
             </div>
             <div className="section-middle">
                 {score}

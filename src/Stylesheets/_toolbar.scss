@@ -1,7 +1,6 @@
 @import "variables";
 @import "mixins";
 
-
 .toolbar {
     @include clear();
     font-size: 12px;
@@ -79,5 +78,32 @@
     input[type="radio"]:checked + span {
         background: $gray;
         color: $gray-darker;
+    }
+}
+
+.toolbar-item {
+    .separator {
+        display: inline-block;
+        color: $gray-medium;
+    }
+    .label {
+        color: $gray-medium;
+        display: inline-block;
+        width: 40px;
+        margin-left: -40px;
+    }
+
+    .player {
+        display: inline-block;
+        padding: 0 5px;
+        width: 40px;
+        //background: red;
+
+        &.player-one {
+            text-align: right;
+        }
+        &.player-two {
+            text-align: left;
+        }
     }
 }

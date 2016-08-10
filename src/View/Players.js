@@ -1,24 +1,24 @@
 import React from 'react';
+import PlayersInput from './PlayersInput';
 
 export default class extends React.Component {
     onChange(event) {
-        this.props.onChange(parseInt(event.currentTarget.value, 10));
+        this.props.onChange(parseInt(event.target.value, 10));
     }
 
     render() {
         const onChange = this.onChange.bind(this);
-        const checked = this.props.players;
+        const numberOfPlayers = this.props.players.keys().length;
 
-        console.log(checked);
         return <div className="toolbar-item players">
             <label>
-                <input name="players" type="radio" value="1" checked={checked === 1} onChange={onChange}/>
+                <PlayersInput numberOfPlayers={numberOfPlayers} value="1" onChange={onChange}/>
                 <span>Single</span>
             </label>
             <label>
-                <input name="players" type="radio" value="2" checked={checked === 2} onChange={onChange}/>
+                <PlayersInput numberOfPlayers={numberOfPlayers} value="2" onChange={onChange}/>
                 <span>2 Player</span>
             </label>
-        </div>
+        </div>;
     }
 };

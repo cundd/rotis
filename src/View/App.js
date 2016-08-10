@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
-import Grid from '../Grid';
 import GridView from './GridView';
 import Modal from './Modal';
 import Toolbar from './Toolbar';
+import PlayerCollection from '../PlayerCollection';
+
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            players: 1,
-            grid: new Grid(),
-            score: 0,
+            players: new PlayerCollection(),
             size: {
                 rows: 0,
                 columns: 0
@@ -21,36 +20,29 @@ class App extends Component {
     }
 
     render() {
-        const grid = this.state.grid;
-        const _onReloadClick = this.onReloadClick.bind(this);
-        const _onPlayersChange = this.onPlayersChange.bind(this);
-        const modal = this.getModal(grid);
+        const modal = this.getModal(this.state.players);
+        const createGridView = function (player, index) {
+            return <GridView player={player} key={player.playerId}
+                             size={this.state.size} clickHandler={this.props.clickHandler}/>
+        }.bind(this);
 
-        if (this.state.players === 2) {
-            return <div className="app-window">
-                <Toolbar score={this.state.score} highScore={this.state.highScore} onReloadClick={_onReloadClick}
-                         players={this.state.players} onPlayersChange={_onPlayersChange}
-                         version={this.state.version}
-                         score2={this.state.score2}/>
-                {modal}
-
-                <GridView grid={this.state.grid} gridKey="1"
-                          size={this.state.size} clickHandler={this.props.clickHandler}/>
-                <GridView grid={this.state.grid2} gridKey="2"
-                          size={this.state.size} clickHandler={this.props.clickHandler}/>
-            </div>;
-        }
+        const toolbar = this.getToolbar();
 
         return <div className="app-window">
-            <Toolbar score={this.state.score} highScore={this.state.highScore} onReloadClick={_onReloadClick}
-                     players={this.state.players} onPlayersChange={_onPlayersChange}
-                     version={this.state.version}/>
+            {toolbar}
             {modal}
-
-            <GridView grid={this.state.grid} gridKey="1"
-                      size={this.state.size} clickHandler={this.props.clickHandler}/>
+            {this.state.players.map(createGridView)}
         </div>;
 
+
+        // return <div className="app-window">
+        //
+        //     {modal}
+        //
+        //     <GridView grid={this.state.grid} gridKey="1"
+        //               size={this.state.size} clickHandler={this.props.clickHandler}/>
+        // </div>;
+        //
 
         // return <GridView
         //     grid={this.state.grid}
@@ -64,17 +56,46 @@ class App extends Component {
         // />;
     }
 
-    getModal(grid) {
-        const _onModalClick = this.onModalClick.bind(this);
-        let modal;
-        if (!grid.hasConnectedCells()) {
-            if (grid.isEmpty()) {
-                modal = <Modal message="You won" onClick={_onModalClick}/>
-            } else {
-                modal = <Modal message="Game over" onClick={_onModalClick}/>
-            }
+    getToolbar() {
+        const _onReloadClick = this.onReloadClick.bind(this);
+        const _onPlayersChange = this.onPlayersChange.bind(this);
+
+        if (this.state.players.keys().length === 2) {
+            return <Toolbar score={this.state.score} highScore={this.state.highScore} onReloadClick={_onReloadClick}
+                            players={this.state.players} onPlayersChange={_onPlayersChange}
+                            version={this.state.version}
+                            score2={this.state.score2}/>;
         }
-        return modal;
+        return <Toolbar score={this.state.score} highScore={this.state.highScore} onReloadClick={_onReloadClick}
+                        players={this.state.players} onPlayersChange={_onPlayersChange}
+                        version={this.state.version}/>;
+
+    }
+
+    getModal(players) {
+        const _onModalClick = this.onModalClick.bind(this);
+
+        if (players.length === 1) {
+            const grid = players[0].grid;
+            if (!grid.hasConnectedCells()) {
+                if (grid.isEmpty()) {
+                    return <Modal message="You won" onClick={_onModalClick}/>
+                } else {
+                    return <Modal message="Game over" onClick={_onModalClick}/>
+                }
+            }
+
+            return undefined;
+        } else {
+            const playersWithConnectedCells = players.values().filter(function (player) {
+                return player.grid.hasConnectedCells();
+            });
+
+            if (playersWithConnectedCells.length === 0) {
+                return <Modal message="Finished" onClick={_onModalClick}/>
+            }
+            return undefined;
+        }
     }
 
 

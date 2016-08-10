@@ -8,14 +8,13 @@ export default class extends React.Component {
             cellProps.color,
             cellProps.x,
             cellProps.y,
-            this.props.grid,
-            this.props.gridKey,
+            this.props.player,
             this
         );
     }
 
     render() {
-        const grid = this.props.grid;
+        const grid = this.props.player.grid;
         const size = this.props.size;
         const _onCellClick = this.onCellClick.bind(this);
         const createColumn = function (column, index) {
@@ -23,6 +22,14 @@ export default class extends React.Component {
                            reverse="true" onCellClick={_onCellClick} size={size}/>;
         };
 
-        return <div className="grid grid-reverse">{grid.getColumns().map(createColumn)}</div>;
+        const className = [
+            'grid',
+            'grid-reverse',
+            'grid-width-' + size.columns,
+            grid.hasConnectedCells() ? '-connected-cells' : '-no-connected-cells',
+            grid.isEmpty() ? '-is-empty' : '-not-empty'
+        ].join(' ');
+
+        return <div className={className}>{grid.getColumns().map(createColumn)}</div>;
     }
 }

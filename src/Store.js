@@ -1,5 +1,6 @@
 import Color from './Color';
 import Grid from './Grid';
+import PlayerCollection from './PlayerCollection';
 
 export default class Store {
     static needs() {
@@ -19,78 +20,25 @@ export default class Store {
         this.environment.prepare();
     }
 
-    _loadRowAndCountFromUri(players) {
-        const cellSize = 40;
-        const borderSize = 10;
-        const toolbarHeight = 30;
-        const applicationWindow = this._applicationWindow();
-        const hash = applicationWindow.location.hash;
-
-        if (hash) {
-            const rowCol = hash.substr(1).split('x');
-            return {
-                rows: rowCol[0],
-                columns: rowCol[1]
-            };
-        }
-
-        let rows = Math.floor((applicationWindow.innerHeight - 2 * borderSize - toolbarHeight) / cellSize);
-        let columns = Math.floor((applicationWindow.innerWidth / players - players * 2 * borderSize) / cellSize);
-
-        return {
-            rows: rows,
-            columns: columns
-        };
-    }
-
-    _createState(numberOfPlayers = 2) {
-        const size = this._loadRowAndCountFromUri(numberOfPlayers);
-        const grid = new Grid(this.buildRandomColumns(size.rows, size.columns));
-        const grid2 = numberOfPlayers == 2 ? new Grid(this.buildRandomColumns(size.rows, size.columns)) : {};
-        let highScore = this._applicationWindow().localStorage.getItem('highScore') || 0;
-
-        return {
-            'players': numberOfPlayers,
-            'size': size,
-            'grid': grid,
-            'grid2': grid2,
-            'score': 0,
-            'score2': 0,
-            'highScore': highScore,
-            'version': '0.0.2'
-        };
-    }
-
     getState() {
         return this._state;
     }
 
     reset() {
-        this._setState(this._createState(this._state.players));
+        this._setState(this._createState(this._state.players.keys().length));
     }
 
     setPlayers(numberOfPlayers) {
         this._setState(this._createState(numberOfPlayers));
     }
 
-    setGrid(grid, gridKey) {
-        let property = "grid";
-        if (gridKey > 1) {
-            property += gridKey;
-        }
-
-        const changedState = {};
-        changedState[property] = grid;
-
-        this._setState(Object.assign({}, this.getState(), changedState));
+    setGrid(grid, player) {
+        this._updatePlayer(player.playerId, {grid: grid});
     }
 
-    setScore(newScore) {
-        const newState = Object.assign({}, this.getState(), {
-            score: newScore
-        });
-
-        this._setState(newState);
+    setScore(newScore, player) {
+        console.info(newScore);
+        this._updatePlayer(player.playerId, {score: newScore});
     }
 
     buildRandomColumns(rowCount, columnCount) {
@@ -121,6 +69,72 @@ export default class Store {
         const randomPosition = Math.floor(Math.random() * keys.length);
 
         return keys[randomPosition];
+    }
+
+    _updatePlayer(playerId, playerData) {
+        const previousState = this.getState();
+        const changedState = {players: {}};
+
+        const updatedPlayer = Object.assign({}, previousState.players[playerId], playerData);
+
+        const changedPlayerCollection = {};
+        changedPlayerCollection[playerId] = updatedPlayer;
+
+        changedState.players = new PlayerCollection(Object.assign(
+            {},
+            previousState.players,
+            changedPlayerCollection
+        ));
+
+        this._setState(Object.assign({}, this.getState(), changedState));
+    }
+
+    _loadRowAndCountFromUri(players) {
+        const cellSize = 40;
+        const borderSize = 10;
+        const toolbarHeight = 30;
+        const applicationWindow = this._applicationWindow();
+        const hash = applicationWindow.location.hash;
+
+        if (hash) {
+            const rowCol = hash.substr(1).split('x');
+            return {
+                rows: rowCol[0],
+                columns: rowCol[1]
+            };
+        }
+
+        return {
+            rows: Math.floor((applicationWindow.innerHeight - 2 * borderSize - toolbarHeight) / cellSize),
+            columns: Math.floor((applicationWindow.innerWidth / players - 2 * borderSize) / cellSize)
+        };
+    }
+
+    _createState(numberOfPlayers = 1) {
+        const size = this._loadRowAndCountFromUri(numberOfPlayers);
+        let highScore = this._applicationWindow().localStorage.getItem('highScore') || 0;
+
+        let players = new PlayerCollection();
+        let currentPlayer;
+        for (let i = 0; i < numberOfPlayers; i++) {
+            currentPlayer = this._createPlayerState(size, i);
+            players[currentPlayer.playerId] = currentPlayer;
+        }
+
+        return {
+            'players': players,
+            'size': size,
+            'highScore': highScore,
+            'version': '0.1.0'
+        };
+    }
+
+    _createPlayerState(size, playerId) {
+        return {
+            playerId: playerId,
+            grid: new Grid(this.buildRandomColumns(size.rows, size.columns)),
+            score: 0
+        }
     }
 
     _setState(state) {
