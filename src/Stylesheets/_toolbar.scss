@@ -1,0 +1,83 @@
+@import "variables";
+@import "mixins";
+
+
+.toolbar {
+    @include clear();
+    font-size: 12px;
+    line-height: 30px;
+    color: $gray;
+    background: $gray-darker;
+    //border-bottom: ($std-space/2) solid $bg;
+    //text-shadow: 1px 2px 3px $gray-dark, 0 0 0 #000, 1px 2px 3px $gray-dark;
+    //text-transform: uppercase;
+
+    .toolbar-item {
+        display: inline-block;
+        //float: left;
+        padding: 0 ($std-space/2);
+
+        &.-right {
+            float: right;
+        }
+
+        &.version {
+            color: $gray-medium;
+        }
+
+        .high-score {
+            font-size: 10px;
+            color: $gray-medium;
+        }
+    }
+
+    a {
+        text-decoration: none;
+        color: $gray;
+
+        &:active {
+            color: $gray-medium;
+            background: $gray-darker;
+        }
+    }
+
+    .section-left,
+    .section-middle,
+    .section-right {
+        width: 33.3%;
+        float: left;
+    }
+    .section-right {
+        float: right;
+        text-align: right;
+    }
+    .section-middle {
+        text-align: center;
+    }
+}
+
+.toolbar-item.players {
+    display: none;
+    @media (min-width: 460px) {
+        display: inline-block;
+    }
+    input {
+        width: 1px;
+        height: 1px;
+        font-size: 0;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        position: absolute;
+        left: -5000px;
+    }
+
+    label span {
+        display: inline-block;
+        padding: 0 7px;
+    }
+    input[type="radio"]:checked + span {
+        background: $gray;
+        color: $gray-darker;
+    }
+}

@@ -30,7 +30,8 @@ class App extends Component {
             return <div className="app-window">
                 <Toolbar score={this.state.score} highScore={this.state.highScore} onReloadClick={_onReloadClick}
                          players={this.state.players} onPlayersChange={_onPlayersChange}
-                         version={this.state.version}/>
+                         version={this.state.version}
+                         score2={this.state.score2}/>
                 {modal}
 
                 <GridView grid={this.state.grid} gridKey="1"

@@ -10,7 +10,8 @@ export default class Store {
         this.environment = null;
         this.clickHandler = clickHandler || {};
         this.rootComponent = renderCallback(this);
-        this._setState(this._getInitialState());
+
+        this._setState(this._createState());
     }
 
     didResolveDependencies() {
@@ -21,6 +22,7 @@ export default class Store {
     _loadRowAndCountFromUri(players) {
         const cellSize = 40;
         const borderSize = 10;
+        const toolbarHeight = 30;
         const applicationWindow = this._applicationWindow();
         const hash = applicationWindow.location.hash;
 
@@ -32,7 +34,7 @@ export default class Store {
             };
         }
 
-        let rows = Math.floor((applicationWindow.innerHeight - 2 * borderSize) / cellSize);
+        let rows = Math.floor((applicationWindow.innerHeight - 2 * borderSize - toolbarHeight) / cellSize);
         let columns = Math.floor((applicationWindow.innerWidth / players - players * 2 * borderSize) / cellSize);
 
         return {
@@ -41,17 +43,19 @@ export default class Store {
         };
     }
 
-    _getInitialState() {
-        const players = 1;
-        const size = this._loadRowAndCountFromUri(players);
+    _createState(numberOfPlayers = 2) {
+        const size = this._loadRowAndCountFromUri(numberOfPlayers);
         const grid = new Grid(this.buildRandomColumns(size.rows, size.columns));
+        const grid2 = numberOfPlayers == 2 ? new Grid(this.buildRandomColumns(size.rows, size.columns)) : {};
         let highScore = this._applicationWindow().localStorage.getItem('highScore') || 0;
 
         return {
-            'players': players,
+            'players': numberOfPlayers,
             'size': size,
             'grid': grid,
+            'grid2': grid2,
             'score': 0,
+            'score2': 0,
             'highScore': highScore,
             'version': '0.0.2'
         };
@@ -62,23 +66,11 @@ export default class Store {
     }
 
     reset() {
-        this._setState(this._getInitialState());
+        this._setState(this._createState(this._state.players));
     }
 
     setPlayers(numberOfPlayers) {
-        let stateBefore = this.getState();
-
-        const size = this._loadRowAndCountFromUri(numberOfPlayers);
-        const grid = new Grid(this.buildRandomColumns(size.rows, size.columns));
-        const grid2 = numberOfPlayers === 2 ? new Grid(this.buildRandomColumns(size.rows, size.columns)) : {};
-
-        const newState = Object.assign({}, stateBefore, {
-            players: numberOfPlayers,
-            grid: grid,
-            grid2: grid2
-        });
-
-        this._setState(newState);
+        this._setState(this._createState(numberOfPlayers));
     }
 
     setGrid(grid, gridKey) {

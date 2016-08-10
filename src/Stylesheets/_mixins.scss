@@ -1,0 +1,23 @@
+
+@mixin clear() {
+    & {
+        display: block;
+        clear: both;
+    }
+
+    &:before, &:after {
+        clear: both;
+        display: block;
+        content: " ";
+    }
+}
+
+@mixin gradient($start, $end, $rotation: -45deg) {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100 */
+    //background: $start; /* Old browsers */
+    //background: -moz-linear-gradient($rotation,  $start 0%, $end 100%); /* FF3.6-15 */
+    //background: -webkit-linear-gradient($rotation,  $start 0%,$end 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(180 + $rotation, $start 0%, $end 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$start}', endColorstr='#{$end}', GradientType=1); /* IE6-9 */
+
+}

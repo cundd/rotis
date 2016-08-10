@@ -1,0 +1,28 @@
+@import "variables";
+.modal-overlay {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
+
+    background: rgba(black, .5);
+}
+
+.modal {
+    border: 1px solid $bg;
+    margin: $std-space auto;
+    width: 300px;
+    max-width: 80%;
+    background: $gray-dark;
+    padding: $std-space;
+    color: $gray;
+
+    text-shadow: 0 0 1px rgba($bg, .8);
+
+    cursor: pointer;
+
+    -webkit-box-shadow: 1px 2px 5px rgba(#000, 0.5);
+    -moz-box-shadow: 1px 2px 5px rgba(#000, 0.5);
+    box-shadow: 1px 2px 5px rgba(#000, 0.5);
+}
