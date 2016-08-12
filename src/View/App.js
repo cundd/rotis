@@ -33,27 +33,6 @@ class App extends Component {
             {modal}
             {this.state.players.map(createGridView)}
         </div>;
-
-
-        // return <div className="app-window">
-        //
-        //     {modal}
-        //
-        //     <GridView grid={this.state.grid} gridKey="1"
-        //               size={this.state.size} clickHandler={this.props.clickHandler}/>
-        // </div>;
-        //
-
-        // return <GridView
-        //     grid={this.state.grid}
-        //     score={this.state.score}
-        //     version={this.state.version}
-        //     highScore={this.state.highScore}
-        //     size={this.state.size}
-        //     restart={this.restart}
-        //
-        //     clickHandler={this.props.clickHandler}
-        // />;
     }
 
     getToolbar() {
@@ -73,31 +52,50 @@ class App extends Component {
     }
 
     getModal(players) {
-        const _onModalClick = this.onModalClick.bind(this);
-
         if (players.length === 1) {
-            const grid = players[0].grid;
-            if (!grid.hasConnectedCells()) {
-                if (grid.isEmpty()) {
-                    return <Modal message="You won" onClick={_onModalClick}/>
-                } else {
-                    return <Modal message="Game over" onClick={_onModalClick}/>
-                }
-            }
-
-            return undefined;
-        } else {
-            const playersWithConnectedCells = players.values().filter(function (player) {
-                return player.grid.hasConnectedCells();
-            });
-
-            if (playersWithConnectedCells.length === 0) {
-                return <Modal message="Finished" onClick={_onModalClick}/>
-            }
-            return undefined;
+            return this._getModalSinglePlayer(players);
         }
+        return this._getModalMultiPlayer(players);
     }
 
+    _getModalSinglePlayer(players) {
+        const _onModalClick = this.onModalClick.bind(this);
+        const grid = players[0].grid;
+        if (!grid.hasConnectedCells()) {
+            const message = grid.isEmpty()
+                ? <h1>You won</h1>
+                : <h1>Game over</h1>;
+            return <Modal message={message} onClick={_onModalClick}/>
+        }
+        return undefined;
+    }
+
+    _getModalMultiPlayer(players) {
+        const _onModalClick = this.onModalClick.bind(this);
+        const playersWithConnectedCells = players.values().filter(function (player) {
+            return player.grid.hasConnectedCells();
+        });
+
+        if (playersWithConnectedCells.length === 0) {
+            let tie = false;
+            const winner = players.reduce(function (previousPlayer, currentPlayer) {
+                if (currentPlayer.score === previousPlayer.score) {
+                    tie = true;
+                }
+                if (currentPlayer.score > previousPlayer.score) {
+                    tie = false;
+                    return currentPlayer;
+                }
+                return previousPlayer;
+            }, {score: 0});
+
+            const message = tie
+                ? <h1>Both won</h1>
+                : <h1>Player {winner.playerId + 1} won</h1>;
+            return <Modal message={message} onClick={_onModalClick}/>
+        }
+        return undefined;
+    }
 
     onModalClick() {
         this.restart();

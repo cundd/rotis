@@ -12,10 +12,9 @@ export default class extends React.Component {
         const players = this.props.players;
 
         if (players.length === 1) {
-            score = <Score score={this.props.score} highScore={this.props.highScore}/>;
+            score = <Score score={players['0'].score} highScore={this.props.highScore}/>;
         } else if (players.length > 1) {
-            score = <ScoreMultiPlayer players={players} score1={players['0'].score}
-                                    score2={players['1'].score}/>;
+            score = <ScoreMultiPlayer players={players}/>;
         }
 
         return <div className="toolbar">

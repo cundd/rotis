@@ -105,6 +105,14 @@ export default class {
         return valueCollection;
     }
 
+    reduce(callback, initialValue) {
+        if (typeof callback !== 'function') {
+            throw new TypeError('Argument "callback" is not of type function');
+        }
+
+        return this.values().reduce(callback, initialValue);
+    }
+
     get length() {
         return this.keys().length;
     }

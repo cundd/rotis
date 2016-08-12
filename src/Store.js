@@ -144,8 +144,9 @@ export default class Store {
     }
 
     _changeHighScore(state) {
-        if (state.highScore < state.score) {
-            this._applicationWindow().localStorage.setItem('highScore', state.score);
+        const player = state.players['0'];
+        if (player && player.score > state.highScore) {
+            this._applicationWindow().localStorage.setItem('highScore', player.score);
         }
     }
 

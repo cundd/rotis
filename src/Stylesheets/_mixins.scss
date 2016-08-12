@@ -21,3 +21,15 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$start}', endColorstr='#{$end}', GradientType=1); /* IE6-9 */
 
 }
+
+@mixin mobile() {
+    @media (max-width: 425px) {
+        @content;
+    }
+}
+
+@mixin not-mobile() {
+    @media (min-width: 426px) {
+        @content;
+    }
+}
