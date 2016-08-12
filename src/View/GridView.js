@@ -1,13 +1,10 @@
 import React from 'react';
-import Column from './Column';
+import ColumnView from './ColumnView';
 
-export default class extends React.Component {
-    onCellClick(event, cell) {
-        const cellProps = cell.props;
+export default class GridView extends React.Component {
+    onCellClick(event, cellView) {
         this.props.clickHandler.handleClick(
-            cellProps.color,
-            cellProps.x,
-            cellProps.y,
+            cellView.props.cell,
             this.props.player,
             this
         );
@@ -18,8 +15,8 @@ export default class extends React.Component {
         const size = this.props.size;
         const _onCellClick = this.onCellClick.bind(this);
         const createColumn = function (column, index) {
-            return <Column key={index} data={column} columnIndex={index} grid={grid}
-                           reverse="true" onCellClick={_onCellClick} size={size}/>;
+            return <ColumnView key={index} column={column} grid={grid}
+                               reverse="true" onCellClick={_onCellClick} size={size}/>;
         };
 
         const className = [

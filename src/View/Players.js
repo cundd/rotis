@@ -1,7 +1,11 @@
 import React from 'react';
 import PlayersInput from './PlayersInput';
 
-export default class extends React.Component {
+export default class Players extends React.Component {
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.props.players.length !== nextProps.players.length;
+    }
+
     onChange(event) {
         this.props.onChange(parseInt(event.target.value, 10));
     }

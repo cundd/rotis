@@ -2,7 +2,7 @@
  * Created by daniel on 10/08/16.
  */
 
-export default class {
+export default class PlayerCollection {
     /**
      */
     constructor(initializationValues) {

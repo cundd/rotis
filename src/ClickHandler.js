@@ -1,4 +1,4 @@
-import CellData from './CellData';
+import CellData from './Model/CellData';
 
 class ClickHandler {
     constructor() {
@@ -6,9 +6,12 @@ class ClickHandler {
         this._columns = [];
     }
 
-    handleClick(color, x, y, player) {
+    handleClick(cell, player) {
+        if (!(cell instanceof CellData)) {
+            throw new TypeError('Argument cell must be of type "CellData"');
+        }
         const grid = player.grid;
-        const connectedCells = grid.findConnectedCells(new CellData(color, x, y));
+        const connectedCells = grid.findConnectedCells(cell);
         if (connectedCells.length > 1) {
             const newGrid = grid.removeCells(connectedCells);
 

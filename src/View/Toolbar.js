@@ -6,7 +6,7 @@ import Reload from './Reload';
 import Version from './Version';
 import Players from './Players';
 
-export default class extends React.Component {
+export default class Toolbar extends React.Component {
     render() {
         let score;
         const players = this.props.players;

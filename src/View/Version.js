@@ -1,13 +1,18 @@
 import React from 'react';
 import Modal from './Modal';
 
-export default class extends React.Component {
+export default class Version extends React.PureComponent{
     constructor() {
         super();
         this.state = {
             showModal: false
         }
     }
+
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     return this.state.showModal !== nextState.showModal
+    //         || this.props.version !== nextProps.version;
+    // }
 
     onModalClick(event) {
         event.stopPropagation();

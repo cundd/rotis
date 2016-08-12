@@ -1,21 +1,25 @@
 import React from 'react';
-import DataCell from '../CellData';
 
-class Cell extends React.Component {
+export default class CellView extends React.Component {
+    shouldComponentUpdate(nextProps, nextState) {
+        return true;
+    }
+
     render() {
         const _this = this;
         const triggerHandler = (event) => {
             _this.props.onCellClick(event, _this);
         };
 
-        const column = this.props.y;
-        const row = this.props.x;
-        const color = this.props.color;
+        const cell = this.props.cell;
+        const column = cell.column;
+        const row = cell.row;
+        const color = cell.color;
         let classNameCollection = ["cell", "cell-color-" + color];
 
         /** @type {Grid} grid */
         const grid = this.props.grid;
-        const siblings = grid.findConnectedSiblings(new DataCell(color, row, column));
+        const siblings = grid.findConnectedSiblings(cell);
 
         if (siblings.up) {
             classNameCollection.push('-connected-up');
@@ -32,7 +36,7 @@ class Cell extends React.Component {
 
         const className = classNameCollection.join(' ');
 
-        if (Cell.isTouchDevice()) {
+        if (CellView.isTouchDevice()) {
             return <div className={className} onTouchStart={triggerHandler}>{column}:{row}</div>;
         }
         return <div className={className} onClick={triggerHandler}>{column}:{row}</div>;
@@ -45,5 +49,3 @@ class Cell extends React.Component {
         );
     }
 }
-
-export default Cell;

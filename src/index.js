@@ -24,3 +24,8 @@ sl.create('store', function (store) {
         document.getElementById('root')
     );
 });
+
+
+
+import Perf from 'react/lib/ReactPerf';
+window.Perf = Perf;

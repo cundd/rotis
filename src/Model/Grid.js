@@ -1,4 +1,5 @@
-import CellData from './CellData'
+import CellData from './CellData';
+import Column from './Column';
 import CellCollection from './CellCollection.js';
 
 export default class Grid {
@@ -111,18 +112,28 @@ export default class Grid {
     }
 
     getColumns() {
-        return this._columns.slice();
+        return this._columns.slice().map(function(column, columnIndex) {
+            return new Column(column, columnIndex);
+        });
     }
 
     _getColumn(col) {
-        return this._columns[col] || [];
+        return new Column(this._columns[col] || [], col);
+    }
+
+    _getCell(row, col) {
+        return this._getColumn(col).getCell(row);
     }
 
     _getCellColor(row, col) {
-        return this._getColumn(col)[row];
+        const cell = this._getCell(row, col);
+        return cell ? cell.color : undefined;
     }
 
     _findConnectedCells(cell, previousCells) {
+        if (!(cell instanceof CellData)) {
+            throw new TypeError('Argument cell must be of type CellData');
+        }
         let sibling;
         let matching = [cell];
         const color = this._getCellColor(cell.row, cell.column);

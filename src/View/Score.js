@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class extends React.Component {
+export default class Score extends React.Component {
     render() {
         return <div className="toolbar-item score">Score{" "}
             <span className="score">{this.props.score}</span>{" "}

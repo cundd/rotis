@@ -1,6 +1,6 @@
-import Color from './Color';
-import Grid from './Grid';
-import PlayerCollection from './PlayerCollection';
+import Color from './Model/Color';
+import Grid from './Model/Grid';
+import PlayerCollection from './Model/PlayerCollection';
 
 export default class Store {
     static needs() {
@@ -124,7 +124,7 @@ export default class Store {
             'players': players,
             'size': size,
             'highScore': highScore,
-            'version': '0.1.0'
+            'version': '0.1.1'
         };
     }
 

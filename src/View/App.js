@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import GridView from './GridView';
 import Modal from './Modal';
 import Toolbar from './Toolbar';
-import PlayerCollection from '../PlayerCollection';
+import PlayerCollection from '../Model/PlayerCollection';
 
 
-class App extends Component {
+export default class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -52,6 +52,9 @@ class App extends Component {
     }
 
     getModal(players) {
+        if (players.length === 0) {
+            return undefined;
+        }
         if (players.length === 1) {
             return this._getModalSinglePlayer(players);
         }
@@ -110,5 +113,3 @@ class App extends Component {
         this.props.store.reset();
     }
 }
-
-export default App;
