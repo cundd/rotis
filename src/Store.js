@@ -37,7 +37,6 @@ export default class Store {
     }
 
     setScore(newScore, player) {
-        console.info(newScore);
         this._updatePlayer(player.playerId, {score: newScore});
     }
 

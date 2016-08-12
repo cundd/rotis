@@ -17,11 +17,7 @@ class ClickHandler {
     }
 
     _updateState(grid, connectedCells, player) {
-        const stateBefore = this.store.getState();
-        const previousScore = stateBefore.score;
         const newScore = player.score + Math.pow(2, connectedCells.length);
-
-        console.info(player.score, previousScore , Math.pow(2, connectedCells.length))
 
         this.store.setScore(newScore, player);
         this.store.setGrid(grid, player);
