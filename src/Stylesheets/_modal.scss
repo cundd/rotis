@@ -12,6 +12,7 @@
 }
 
 .modal {
+    line-height: normal;
     border: 1px solid $bg;
     margin: 20vh auto;
     width: 80vw;
@@ -32,6 +33,7 @@
     h1 {
         margin: 0;
         font-weight: normal;
+        font-size: 2em;
         @include not-mobile() {
             font-size: 80px;
         }

@@ -62,10 +62,8 @@ class App extends Component {
         const _onModalClick = this.onModalClick.bind(this);
         const grid = players[0].grid;
         if (!grid.hasConnectedCells()) {
-            const message = grid.isEmpty()
-                ? <h1>You won</h1>
-                : <h1>Game over</h1>;
-            return <Modal message={message} onClick={_onModalClick}/>
+            const message = grid.isEmpty() ? 'You won' : 'Game over';
+            return <Modal heading={message} onClick={_onModalClick}/>
         }
         return undefined;
     }
@@ -89,11 +87,10 @@ class App extends Component {
                 return previousPlayer;
             }, {score: 0});
 
-            const message = tie
-                ? <h1>Both won</h1>
-                : <h1>Player {winner.playerId + 1} won</h1>;
-            return <Modal message={message} onClick={_onModalClick}/>
+            const message = tie ? 'Both won' : `Player ${winner.playerId + 1} won`;
+            return <Modal heading={message} onClick={_onModalClick}/>
         }
+
         return undefined;
     }
 
