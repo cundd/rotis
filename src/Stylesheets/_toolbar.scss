@@ -55,11 +55,19 @@
         width: 50%;
         text-align: center;
     }
+
+    @include not-mobile {
+        .section-left,
+        .section-middle,
+        .section-right {
+            width:33.3%;
+        }
+    }
 }
 
 .toolbar-item.players {
     display: none;
-    @include not-mobile() {
+    @include multi-player-supported() {
         display: inline-block;
     }
     input {

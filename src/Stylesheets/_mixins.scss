@@ -33,3 +33,9 @@
         @content;
     }
 }
+
+@mixin multi-player-supported() {
+    @media (min-width: 580px) {
+        @content;
+    }
+}
