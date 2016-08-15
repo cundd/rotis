@@ -1,7 +1,7 @@
 /**
  * Created by daniel on 04/08/16.
  */
-export default class {
+export default class Environment {
     prepare() {
         this._lockScrolling();
     }

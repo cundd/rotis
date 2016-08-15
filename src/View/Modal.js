@@ -1,8 +1,13 @@
 import React from 'react';
 
 export default class Modal extends React.Component {
+    onClick(event) {
+        this.props.onClick(event);
+    }
+
     render() {
         let content = [];
+        const _onClick = this.onClick.bind(this);
 
         if (this.props.heading) {
             content.push(<div key="heading" className="modal-heading"><h1>{this.props.heading}</h1></div>);
@@ -16,7 +21,7 @@ export default class Modal extends React.Component {
             content.push(<div key="body" className="modal-body">{this.props.children}</div>);
         }
 
-        return <div className="modal-overlay" onClick={this.props.onClick}>
+        return <div className="modal-overlay" onClick={_onClick}>
             <div className="modal">
                 {content}
             </div>

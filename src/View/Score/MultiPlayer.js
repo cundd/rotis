@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class ScoreMultiPlayer extends React.Component {
+export default class MultiPlayer extends React.Component {
     render() {
         const createPlayer = function (player, index) {
             const key = 'player' + index;

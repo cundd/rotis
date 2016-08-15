@@ -14,14 +14,18 @@ export default class App extends Component {
                 rows: 0,
                 columns: 0
             },
-            highScore: 0,
+            highScore: {
+                score: 0,
+                previousScore: 0,
+                changed: false
+            },
             version: '0.0.0'
         };
     }
 
     render() {
         const modal = this.getModal(this.state.players);
-        const createGridView = function (player, index) {
+        const createGridView = function (player) {
             return <GridView player={player} key={player.playerId}
                              size={this.state.size} clickHandler={this.props.clickHandler}/>
         }.bind(this);
@@ -39,16 +43,9 @@ export default class App extends Component {
         const _onReloadClick = this.onReloadClick.bind(this);
         const _onPlayersChange = this.onPlayersChange.bind(this);
 
-        if (this.state.players.keys().length === 2) {
-            return <Toolbar score={this.state.score} highScore={this.state.highScore} onReloadClick={_onReloadClick}
-                            players={this.state.players} onPlayersChange={_onPlayersChange}
-                            version={this.state.version}
-                            score2={this.state.score2}/>;
-        }
-        return <Toolbar score={this.state.score} highScore={this.state.highScore} onReloadClick={_onReloadClick}
+        return <Toolbar highScore={this.state.highScore}
                         players={this.state.players} onPlayersChange={_onPlayersChange}
-                        version={this.state.version}/>;
-
+                        onReloadClick={_onReloadClick} version={this.state.version}/>;
     }
 
     getModal(players) {
@@ -66,7 +63,10 @@ export default class App extends Component {
         const grid = players[0].grid;
         if (!grid.hasConnectedCells()) {
             const message = grid.isEmpty() ? 'You won' : 'Game over';
-            return <Modal heading={message} onClick={_onModalClick}/>
+            const messageBody = this.state.highScore.changed
+                ? ('New HighScore ' + this.state.highScore.score)
+                : undefined;
+            return <Modal heading={message} messageBody={messageBody} onClick={_onModalClick}/>
         }
         return undefined;
     }

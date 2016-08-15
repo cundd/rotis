@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Score from './Score';
-import ScoreMultiPlayer from './ScoreMultiPlayer';
+import ScoreSinglePlayer from './Score/SinglePlayer';
+import ScoreMultiPlayer from './Score/MultiPlayer';
 import Reload from './Reload';
 import Version from './Version';
 import Players from './Players';
@@ -12,7 +12,7 @@ export default class Toolbar extends React.Component {
         const players = this.props.players;
 
         if (players.length === 1) {
-            score = <Score score={players['0'].score} highScore={this.props.highScore}/>;
+            score = <ScoreSinglePlayer score={players['0'].score} highScore={this.props.highScore} />;
         } else if (players.length > 1) {
             score = <ScoreMultiPlayer players={players}/>;
         }

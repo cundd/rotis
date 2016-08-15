@@ -8,6 +8,7 @@ export default class Store {
     };
 
     constructor(renderCallback, clickHandler) {
+        /** @type {Environment} */
         this.environment = null;
         this.clickHandler = clickHandler || {};
         this.rootComponent = renderCallback(this);
@@ -25,7 +26,7 @@ export default class Store {
     }
 
     reset() {
-        this._setState(this._createState(this._state.players.keys().length));
+        this._setState(this._createState(this._state.players.length));
     }
 
     setPlayers(numberOfPlayers) {
@@ -123,7 +124,11 @@ export default class Store {
         return {
             'players': players,
             'size': size,
-            'highScore': highScore,
+            'highScore': {
+                score: highScore,
+                changed: false,
+                previousScore: highScore,
+            },
             'version': '0.1.1'
         };
     }
@@ -137,16 +142,28 @@ export default class Store {
     }
 
     _setState(state) {
-        this._changeHighScore(state);
+        state = this._changeHighScore(state);
         this._state = state;
         this.rootComponent.setState(state);
     }
 
     _changeHighScore(state) {
-        const player = state.players['0'];
-        if (player && player.score > state.highScore) {
-            this._applicationWindow().localStorage.setItem('highScore', player.score);
+        if (state.players.length === 1) {
+            const player = state.players['0'];
+            if (player && player.score > state.highScore.score) {
+                this._applicationWindow().localStorage.setItem('highScore', player.score);
+
+                return Object.assign({}, state, {
+                    highScore: {
+                        score: player.score,
+                        changed: true,
+                        previousScore: state.highScore.previousScore
+                    }
+                });
+            }
         }
+
+        return state;
     }
 
     _applicationWindow() {
