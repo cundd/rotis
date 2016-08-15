@@ -5,11 +5,13 @@ export default class CellView extends React.Component {
         return true;
     }
 
+    onClick(event) {
+        event.preventDefault();
+        this.props.onCellClick(event, this);
+    }
+
     render() {
-        const _this = this;
-        const triggerHandler = (event) => {
-            _this.props.onCellClick(event, _this);
-        };
+        const _onClick = this.onClick.bind(this);
 
         const cell = this.props.cell;
         const column = cell.column;
@@ -37,9 +39,9 @@ export default class CellView extends React.Component {
         const className = classNameCollection.join(' ');
 
         if (CellView.isTouchDevice()) {
-            return <div className={className} onTouchStart={triggerHandler}>{column}:{row}</div>;
+            return <div className={className} onTouchStart={_onClick}>{column}:{row}</div>;
         }
-        return <div className={className} onClick={triggerHandler}>{column}:{row}</div>;
+        return <div className={className} onClick={_onClick}>{column}:{row}</div>;
     }
 
     static isTouchDevice() {
